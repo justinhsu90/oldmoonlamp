@@ -128,9 +128,9 @@ export default {
         let width = img.naturalHeight;
         let height = img.naturalWidth
          if(width < 500 || height < 500){
-          this.$confirm('图片像素未达到500 x 500，可能会导致图片不清晰，是否继续使用?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+          this.$confirm('You just upload an image which resolution less than 500 x 500 pixels, you may continue to upload this image. But the image printed on product may not be cleared. \n\nPlease click on “Continue” if you like to continue with current image uploaded, or click on ”Back” to upload new image.', 'Oops', {
+            confirmButtonText: 'Continue',
+            cancelButtonText: 'Back',
             type: 'warning'
           }).then(() => {
             this.file = base64;
