@@ -128,10 +128,12 @@ export default {
         let width = img.naturalHeight;
         let height = img.naturalWidth
          if(width < 500 || height < 500){
-          this.$confirm('You just upload an image which resolution less than 500 x 500 pixels, you may continue to upload this image. But the image printed on product may not be cleared. \n\nPlease click on “Continue” if you like to continue with current image uploaded, or click on ”Back” to upload new image.', 'Oops', {
+          this.$confirm(`<div>You just upload an image which resolution less than 500 x 500 pixels, you may continue to upload this image. But the image printed on product may not be cleared.</div>
+          <div>Please click on “Continue” if you like to continue with current image uploaded, or click on ”Back” to upload new image.</div>`, 'Oops', {
             confirmButtonText: 'Continue',
             cancelButtonText: 'Back',
-            type: 'warning'
+            type: 'warning',
+            dangerouslyUseHTMLString: true
           }).then(() => {
             this.file = base64;
             this.visible = true;
