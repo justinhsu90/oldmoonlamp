@@ -168,10 +168,14 @@
                   <el-input disabled v-model="form.order"></el-input>
                 </el-form-item>
               </el-col>
-              
+
               <el-col :span="12">
                 <el-form-item label="Product" prop="model">
-                  <el-select v-model="form.model" placeholder="Choose" v-if="type != 'doorbell'">
+                  <el-select
+                    v-model="form.model"
+                    placeholder="Choose"
+                    v-if="type != 'doorbell'"
+                  >
                     <el-option
                       v-for="v in selectPhones"
                       :key="v"
@@ -188,12 +192,18 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item :label="type == 'doorbell' ? 'Address Line 1' : 'Address1'" prop="address1">
+                <el-form-item
+                  :label="type == 'doorbell' ? 'Address Line 1' : 'Address1'"
+                  prop="address1"
+                >
                   <el-input v-model="form.address1"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item :label="type == 'doorbell' ? 'Address Line 2' : 'Address2'" prop="address2">
+                <el-form-item
+                  :label="type == 'doorbell' ? 'Address Line 2' : 'Address2'"
+                  prop="address2"
+                >
                   <el-input v-model="form.address2"></el-input>
                 </el-form-item>
               </el-col>
@@ -209,10 +219,7 @@
               </el-col>
               <el-col :span="12">
                 <el-form-item label="Country" prop="country">
-                  <el-select
-                    v-model="form.country"
-                    placeholder="Choose"
-                  >
+                  <el-select v-model="form.country" placeholder="Choose">
                     <el-option
                       v-for="(v, i) in countrys"
                       :key="i"
@@ -237,22 +244,37 @@
                   <el-input v-model="form.email"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type == 'picword' || type == 'word' || type =='doorbell'">
-                <el-form-item :label="type =='doorbell' ? 'House NO.' : 'Customized Word'" prop="personalizedWord">
+              <el-col
+                :span="12"
+                v-if="type == 'picword' || type == 'word' || type == 'doorbell'"
+              >
+                <el-form-item
+                  :label="type == 'doorbell' ? 'House NO.' : 'Customized Word'"
+                  prop="personalizedWord"
+                >
                   <el-input v-model="form.personalizedWord"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type =='doorbell'">
-                <el-form-item :label="type =='doorbell' ? 'Street Name' : 'Customized Word2'" prop="personalizedWord2">
+              <el-col :span="12" v-if="type == 'doorbell'">
+                <el-form-item
+                  :label="
+                    type == 'doorbell' ? 'Street Name' : 'Customized Word2'
+                  "
+                  prop="personalizedWord2"
+                >
                   <el-input v-model="form.personalizedWord2"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type =='doorbell'">
+              <el-col :span="12" v-if="type == 'doorbell'">
                 <el-form-item label="Color" prop="color">
-                    <el-select v-model="form.color" placeholder="Choose">
-                        <el-option v-for="(v, i) in colors" :key="i" :label="v" :value="v"
+                  <el-select v-model="form.color" placeholder="Choose">
+                    <el-option
+                      v-for="(v, i) in colors"
+                      :key="i"
+                      :label="v"
+                      :value="v"
                     ></el-option>
-                    </el-select>
+                  </el-select>
                 </el-form-item>
               </el-col>
               <el-col :span="12" v-if="type == 'picword' || type == 'pic'">
@@ -317,9 +339,9 @@ export default {
     wonDialog
   },
   data() {
-    let model = '';
-    if(this.type == 'doorbell'){
-      model = 'doorbell';
+    let model = "";
+    if (this.type == "doorbell") {
+      model = "doorbell";
     }
     return {
       value: "",
@@ -474,11 +496,11 @@ export default {
           if (this.form.personalizedWord) {
             formData.append("personalizedWord", this.form.personalizedWord);
           }
-          
+
           if (this.form.personalizedWord2) {
             formData.append("personalizedWord2", this.form.personalizedWord2);
           }
-          
+
           if (this.form.color) {
             formData.append("color", this.form.color);
           }
@@ -487,7 +509,7 @@ export default {
             let blob = this.toBlob(this.form.formSrc);
             formData.append("uploadfile", blob);
           }
-          
+
           axios({
             url: "wowcher/customized/add",
             method: "POST",
@@ -511,6 +533,7 @@ export default {
                   this.value = res.errorMsg;
                 }
                 this.title = "Oops!!!";
+                this.uploadTip = "";
                 this.$message.error("upload error");
               }
             })

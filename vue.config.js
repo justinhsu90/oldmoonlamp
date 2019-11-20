@@ -6,13 +6,15 @@ function resolve(dir = "") {
 const env = process.env.ENV;
 
 let publicPath =
-  env == "all" ? "/redeem" :
-  env == "word"
+  env == "all"
+    ? "/redeem"
+    : env == "word"
     ? "/product/word"
     : env == "pic"
     ? "/product/pic"
-    : env == "doorbell" ? "/product/doorbell" : "/product/picword";
-
+    : env == "doorbell"
+    ? "/product/doorbell"
+    : "/product/picword";
 
 // /pic
 // /word
