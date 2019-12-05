@@ -27,7 +27,7 @@
               <p>Enter your Wowcher Code into field on personalized page.</p>
               <img
                 class="item-two__img"
-                width="400"
+                width="300"
                 :src="require('../assets/img/1.jpg')"
                 alt=""
               />
@@ -603,11 +603,10 @@ export default {
   font-size: 22px;
 }
 .remark-content {
-  width: 100%;
   background: white;
   margin-bottom: 10px;
   display: inline-block;
-  width: 550px;
+  width: 450px;
   border-radius: 8px;
   margin-right: 10px;
   padding: 15px 15px;
@@ -615,7 +614,7 @@ export default {
   height: 525px;
 }
 .form-content {
-  width: 750px;
+  width: 850px;
   padding: 20px 15px 15px 15px;
   border-radius: 8px;
   background: #f8f8f8;
