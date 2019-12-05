@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run publish:word && npm run publish:pic && npm run publish:picword",
+    "build": "npm run publish:word && npm run publish:pic && npm run publish:picword && npm run publish:doorbell",
     "build:all": "ENV=all vue-cli-service build",
     "publish:word": "ENV=word vue-cli-service build",
     "publish:pic": "ENV=pic vue-cli-service build",

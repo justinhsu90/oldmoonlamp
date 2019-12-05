@@ -162,7 +162,7 @@
             label-width="152px"
             :rules="formRules"
           >
-            <el-row :gutter="20">
+            <el-row :gutter="20" class="content-one">
               <el-col :span="24">
                 <el-form-item label="Wowcher Code" prop="order">
                   <el-input disabled v-model="form.order"></el-input>
@@ -186,6 +186,11 @@
                   <el-input disabled v-model="form.model" v-else></el-input>
                 </el-form-item>
               </el-col>
+          </el-row>
+          <el-row class="content-two">
+              <el-col class="recipient-info">
+                Recipient Info
+              </el-col> 
               <el-col :span="12">
                 <el-form-item label="Customer Name" prop="customerName">
                   <el-input v-model="form.customerName"></el-input>
@@ -244,6 +249,11 @@
                   <el-input v-model="form.email"></el-input>
                 </el-form-item>
               </el-col>
+            </el-row>
+           <el-row class="content-three">
+             <el-col class="personalized-content">
+                Personalized Content
+              </el-col> 
               <el-col
                 :span="12"
                 v-if="type == 'picword' || type == 'word' || type == 'doorbell'"
@@ -288,7 +298,9 @@
                   ></wonImage>
                 </el-form-item>
               </el-col>
-              <el-col :span="12">
+            </el-row>
+            <el-row>
+              <el-col>
                 <el-form-item class="form-margin">
                   <el-button
                     @click="submitBtn"
@@ -299,7 +311,7 @@
                   >
                 </el-form-item>
               </el-col>
-            </el-row>
+             </el-row> 
           </el-form>
         </div>
       </div>
@@ -603,8 +615,8 @@ export default {
   height: 525px;
 }
 .form-content {
-  width: 650px;
-  padding: 20px 50px 15px 30px;
+  width: 750px;
+  padding: 20px 15px 15px 15px;
   border-radius: 8px;
   background: #f8f8f8;
   box-sizing: border-box;
@@ -657,5 +669,35 @@ export default {
   color: #666;
   font-size: 12px;
   margin-left: 5px;
+}
+.content-one{
+  padding-right: 20px;
+}
+.content-two{
+  border: 1px solid #DCDFE6;
+  padding-right: 20px;
+  border-radius: 10px;
+}
+.content-three{
+  border: 1px solid #DCDFE6;
+  padding-right: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.recipient-info{
+  color: #606266;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.personalized-content{
+  @extend .recipient-info;
+}
+
+/deep/ .el-form-item{
+  margin-bottom: 19px !important;
 }
 </style>
