@@ -428,7 +428,20 @@ export default {
         },
         personalizedWord: {
           required: true,
-          message: "required"
+          validator: (rule, value, callback) => {
+            if(this.type == 'word' || this.type == 'picword'){
+              let rule = /^[0-9a-zA-ZÀ-ÿ-.,-_/#$@%&*();:'"+={}?! ]*$/;
+              if(!rule.test(value)){
+                callback(new Error(`only English characters and  _ / # $ @ % & * ( ) ; : ' " + - = { } ? ! are allowed`));
+                return;
+              }
+            }
+            if(value === ''){
+              callback(new Error('required'));
+              return;
+            }
+            callback();
+          }
         },
         personalizedWord2: {
           required: true,

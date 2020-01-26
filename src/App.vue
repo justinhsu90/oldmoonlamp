@@ -10,7 +10,7 @@
     <transition name="fade">
       <User-Upload
         v-if="showUpload"
-        :type="type"
+        type="word"
         :wowchercode="form.order"
       ></User-Upload>
     </transition>
@@ -62,14 +62,14 @@ export default {
     UserUpload,
     wonDialog
   },
-  mounted(){
-    // this.$nextTick(()=>{
-    //   this.$refs["form"].$el.onkeyup = event => {
-    //     if (event.keyCode == 13) {
-    //       this.handleSubmit();
-    //     }
-    //   };
-    // })
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs["form"].$el.onkeyup = event => {
+        if (event.keyCode == 13) {
+          this.handleSubmit();
+        }
+      };
+    });
   },
   methods: {
     handleSubmit() {
@@ -101,7 +101,7 @@ export default {
   data() {
     return {
       showUpload: false,
-      type: "word",
+      type: "",
       form: {
         order: ""
       },
