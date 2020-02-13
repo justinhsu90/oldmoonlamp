@@ -10,7 +10,7 @@
     <transition name="fade">
       <User-Upload
         v-if="showUpload"
-        type="word"
+        :type="type"
         :wowchercode="form.order"
       ></User-Upload>
     </transition>

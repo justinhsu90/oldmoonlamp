@@ -122,28 +122,33 @@ export default {
     doUpload(file) {
       let URL = window.URL || window.webkitURL;
       let base64 = URL.createObjectURL(file);
-      let img = document.createElement('img');
+      let img = document.createElement("img");
       img.src = base64;
       img.onload = () => {
         let width = img.naturalHeight;
-        let height = img.naturalWidth
-         if(width < 500 || height < 500){
-          this.$confirm(`<div>You just upload an image which resolution less than 500 x 500 pixels, you may continue to upload this image. But the image printed on product may not be cleared.</div>
-          <div>Please click on “Continue” if you like to continue with current image uploaded, or click on ”Back” to upload new image.</div>`, 'Oops', {
-            confirmButtonText: 'Continue',
-            cancelButtonText: 'Back',
-            type: 'warning',
-            dangerouslyUseHTMLString: true
-          }).then(() => {
-            this.file = base64;
-            this.visible = true;
-          }).catch(() => {});
-        }else{
+        let height = img.naturalWidth;
+        if (width < 500 || height < 500) {
+          this.$confirm(
+            `<div>You just upload an image which resolution less than 500 x 500 pixels, you may continue to upload this image. But the image printed on product may not be cleared.</div>
+          <div>Please click on “Continue” if you like to continue with current image uploaded, or click on ”Back” to upload new image.</div>`,
+            "Oops",
+            {
+              confirmButtonText: "Continue",
+              cancelButtonText: "Back",
+              type: "warning",
+              dangerouslyUseHTMLString: true
+            }
+          )
+            .then(() => {
+              this.file = base64;
+              this.visible = true;
+            })
+            .catch(() => {});
+        } else {
           this.file = base64;
           this.visible = true;
-        } 
-      }
-          
+        }
+      };
     },
     dialogClose() {
       this.visible = false;

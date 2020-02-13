@@ -186,11 +186,11 @@
                   <el-input disabled v-model="form.model" v-else></el-input>
                 </el-form-item>
               </el-col>
-          </el-row>
-          <el-row class="content-two">
+            </el-row>
+            <el-row class="content-two">
               <el-col class="recipient-info">
                 Recipient Info
-              </el-col> 
+              </el-col>
               <el-col :span="12">
                 <el-form-item label="Customer Name" prop="customerName">
                   <el-input v-model="form.customerName"></el-input>
@@ -250,10 +250,10 @@
                 </el-form-item>
               </el-col>
             </el-row>
-           <el-row class="content-three">
-             <el-col class="personalized-content">
+            <el-row class="content-three">
+              <el-col class="personalized-content">
                 Personalized Content
-              </el-col> 
+              </el-col>
               <el-col
                 :span="12"
                 v-if="type == 'picword' || type == 'word' || type == 'doorbell'"
@@ -311,7 +311,7 @@
                   >
                 </el-form-item>
               </el-col>
-             </el-row> 
+            </el-row>
           </el-form>
         </div>
       </div>
@@ -352,6 +352,8 @@ export default {
   },
   data() {
     let model = "";
+    console.log(this.type);
+
     if (this.type == "doorbell") {
       model = "doorbell";
     }
@@ -429,15 +431,19 @@ export default {
         personalizedWord: {
           required: true,
           validator: (rule, value, callback) => {
-            if(this.type == 'word' || this.type == 'picword'){
+            if (this.type == "word" || this.type == "picword") {
               let rule = /^[0-9a-zA-ZÀ-ÿ-.,-_/#$@%&*();:'"+={}?! ]*$/;
-              if(!rule.test(value)){
-                callback(new Error(`only English characters and  _ / # $ @ % & * ( ) ; : ' " + - = { } ? ! are allowed`));
+              if (!rule.test(value)) {
+                callback(
+                  new Error(
+                    `only English characters and  _ / # $ @ % & * ( ) ; : ' " + - = { } ? ! are allowed`
+                  )
+                );
                 return;
               }
             }
-            if(value === ''){
-              callback(new Error('required'));
+            if (value === "") {
+              callback(new Error("required"));
               return;
             }
             callback();
@@ -485,6 +491,7 @@ export default {
       this.previewVisible = false;
     },
     toBlob: dataurl => {
+      debugger;
       var arr = dataurl.split(","),
         mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]),
@@ -682,22 +689,22 @@ export default {
   font-size: 12px;
   margin-left: 5px;
 }
-.content-one{
+.content-one {
   padding-right: 20px;
 }
-.content-two{
-  border: 1px solid #DCDFE6;
+.content-two {
+  border: 1px solid #dcdfe6;
   padding-right: 20px;
   border-radius: 10px;
 }
-.content-three{
-  border: 1px solid #DCDFE6;
+.content-three {
+  border: 1px solid #dcdfe6;
   padding-right: 20px;
   border-radius: 10px;
   margin-top: 10px;
 }
 
-.recipient-info{
+.recipient-info {
   color: #606266;
   font-size: 20px;
   text-align: center;
@@ -705,11 +712,11 @@ export default {
   margin-top: 10px;
 }
 
-.personalized-content{
+.personalized-content {
   @extend .recipient-info;
 }
 
-/deep/ .el-form-item{
+/deep/ .el-form-item {
   margin-bottom: 19px !important;
 }
 </style>
