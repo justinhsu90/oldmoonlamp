@@ -34,7 +34,7 @@
           label-position="left"
           :rules="formRules"
         >
-          <el-form-item label="Wowcher Code" prop="order">
+          <el-form-item label="Voucher Code" prop="order">
             <el-input v-model="form.order"></el-input>
           </el-form-item>
           <el-form-item>
@@ -84,7 +84,7 @@ export default {
             })
             .then(res => {
               if (!res) {
-                this.$message.error("Your Wowcher Code is invalid.");
+                this.$message.error("Your Voucher Code is invalid.");
                 return;
               }
               this.type = res;
@@ -113,7 +113,7 @@ export default {
             if (!rules.test(value)) {
               callback(
                 new Error(
-                  "Please enter Wowcher Code in format as shown in guide。"
+                  "Please enter Voucher Code in format as shown in guide。"
                 )
               );
             } else {

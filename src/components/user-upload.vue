@@ -16,7 +16,7 @@
                 alt=""
               />
               <p>
-                Find your Wowcher Code in your Wowcher order page. Wowcher Code
+                Find your Voucher Code in your Wowcher order page. Voucher Code
                 will be shown on order page. (as shown in red box).
               </p>
             </div>
@@ -24,7 +24,7 @@
           <div class="content__item">
             <h3>Setp 2:</h3>
             <div class="item__div">
-              <p>Enter your Wowcher Code into field on personalized page.</p>
+              <p>Enter your Voucher Code into field on personalized page.</p>
               <img
                 class="item-two__img"
                 width="300"
@@ -55,7 +55,7 @@
               <h3>Setp 5:</h3>
               <div class="item__div">
                 <p>
-                  Before your submission, please make sure both wowcher code and
+                  Before your submission, please make sure both Voucher code and
                   the personalised field are entered and selected.
                 </p>
               </div>
@@ -93,7 +93,7 @@
               <h3>Setp 5:</h3>
               <div class="item__div">
                 <p>
-                  Before your submission, please make sure both Wowcher Code and
+                  Before your submission, please make sure both Voucher Code and
                   image are entered and selected.
                 </p>
               </div>
@@ -131,7 +131,7 @@
               <h3>Setp 5:</h3>
               <div class="item__div">
                 <p>
-                  Before your submission, please make sure both wowcher code and
+                  Before your submission, please make sure both Voucher code and
                   the personalised field and image are entered and selected.
                 </p>
               </div>
@@ -164,7 +164,7 @@
           >
             <el-row :gutter="20" class="content-one">
               <el-col :span="24">
-                <el-form-item label="Wowcher Code" prop="order">
+                <el-form-item label="Voucher Code" prop="order">
                   <el-input disabled v-model="form.order"></el-input>
                 </el-form-item>
               </el-col>
@@ -464,7 +464,7 @@ export default {
             if (!rules.test(value)) {
               callback(
                 new Error(
-                  "Please enter Wowcher Code in format as shown in guide。"
+                  "Please enter Voucher Code in format as shown in guide。"
                 )
               );
             } else {
@@ -574,7 +574,7 @@ export default {
             });
         } else {
           this.$message.error(
-            "Wowcher Code And Photo are needed for Personalisation。"
+            "Voucher Code And Photo are needed for Personalisation。"
           );
         }
       });
