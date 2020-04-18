@@ -14,12 +14,15 @@
     >
       <div slot="title">
         <span class="dialog-title">Photo Crop</span>
-        <span class="dialog-tip"
-          >Select the area you want to print on Product.</span
-        >
+        <span class="dialog-tip">Select the area you want to print on Product.</span>
       </div>
       <div slot="content">
-        <wonCropper v-if="visible" :src="file" ref="wonCropper"></wonCropper>
+        <wonCropper
+          :picType="picType"
+          v-if="visible"
+          :src="file"
+          ref="wonCropper"
+        ></wonCropper>
       </div>
     </wonDialog>
     <div
@@ -30,11 +33,28 @@
     >
       <i class="el-icon-plus plus-icon"></i>
     </div>
-    <div v-else class="image-upload-success" :style="specailStyle">
-      <img class="image-preview" :src="value" :style="specailStyle" />
-      <div class="image-operate" :style="specailStyle">
-        <i class="el-icon-zoom-in" @click.stop="handleLook"></i>
-        <i class="el-icon-delete" @click.stop="$emit('input', '')"></i>
+    <div
+      v-else
+      class="image-upload-success"
+      :style="specailStyle"
+    >
+      <img
+        class="image-preview"
+        :src="value"
+        :style="specailStyle"
+      />
+      <div
+        class="image-operate"
+        :style="specailStyle"
+      >
+        <i
+          class="el-icon-zoom-in"
+          @click.stop="handleLook"
+        ></i>
+        <i
+          class="el-icon-delete"
+          @click.stop="$emit('input', '')"
+        ></i>
       </div>
     </div>
     <wonDialog
@@ -53,7 +73,11 @@
       <div slot="title">
         Preview Photo
       </div>
-      <img class="preview-img" slot="content" :src="value" />
+      <img
+        class="preview-img"
+        slot="content"
+        :src="value"
+      />
     </wonDialog>
   </div>
 </template>
@@ -67,6 +91,9 @@ export default {
     value: {
       required: true
     },
+    picType: {
+      type: String
+    },
     accept: {
       default: "image/png, image/jpeg"
     }
@@ -76,15 +103,48 @@ export default {
     wonDialog
   },
   data() {
+    let specailStyle = {
+      width: "150px",
+      height: "150px"
+    };
+    switch (this.picType) {
+      case "HH0213WHI01":
+        specailStyle = {
+          width: "120px",
+          height: "160px"
+        };
+        break;
+      case "HH0214BLK01":
+        specailStyle = {
+          width: "75px",
+          height: "150px"
+        };
+        break;
+      case "HH0214BLL01":
+        specailStyle = {
+          width: "75px",
+          height: "120px"
+        };
+        break;
+      case "HH0215WHI01":
+        specailStyle = {
+          width: "75px",
+          height: "150px"
+        };
+        break;
+      case "TY0098WHI01":
+        specailStyle = {
+          width: "75px",
+          height: "105px"
+        };
+        break;
+    }
     return {
       visible: false,
       previewVisible: false,
       file: "",
       type: "image/jpeg",
-      specailStyle: {
-        width: "150px",
-        height: "150px"
-      }
+      specailStyle
     };
   },
   methods: {
@@ -93,18 +153,18 @@ export default {
     },
     confirmDialog() {
       let crop = this.$refs["wonCropper"].cropper;
-      let judgeAspectRatio = this.$refs["wonCropper"].judgeAspectRatio;
-      if (judgeAspectRatio) {
-        this.specailStyle = {
-          width: "150px",
-          height: "150px"
-        };
-      } else {
-        this.specailStyle = {
-          width: "150px",
-          height: "150px"
-        };
-      }
+      // let judgeAspectRatio = this.$refs["wonCropper"].judgeAspectRatio;
+      // if (judgeAspectRatio) {
+      //   this.specailStyle = {
+      //     width: "150px",
+      //     height: "150px"
+      //   };
+      // } else {
+      //   this.specailStyle = {
+      //     width: "150px",
+      //     height: "150px"
+      //   };
+      // }
       let canvas = crop.getCroppedCanvas();
       let src = canvas.toDataURL(this.type);
       this.$emit("input", src);

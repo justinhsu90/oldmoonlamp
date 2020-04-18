@@ -1,19 +1,29 @@
 <template>
-  <div class="won-cropper" v-loading="imgLoading">
+  <div
+    class="won-cropper"
+    v-loading="imgLoading"
+  >
     <div class="won-cropper-main">
-      <img ref="mainImg" :src="src" />
+      <img
+        ref="mainImg"
+        :src="src"
+      />
     </div>
     <div class="mt15">
       <i class="clearmid"></i>
       <!-- <div class="won-cropper-preview" ref="previewImg"></div> -->
       <div>
         <div class="scale">
-          <el-button size="small" type="success" @click="$emit('zoom', 0.1)"
-            >Zoom In</el-button
-          >
-          <el-button size="small" type="success" @click="$emit('zoom', -0.1)"
-            >Zoom Out</el-button
-          >
+          <el-button
+            size="small"
+            type="success"
+            @click="$emit('zoom', 0.1)"
+          >Zoom In</el-button>
+          <el-button
+            size="small"
+            type="success"
+            @click="$emit('zoom', -0.1)"
+          >Zoom Out</el-button>
           <!-- <el-button size="small" type="success" @click="setAspectRatio"
             >Rotate</el-button
           > -->
@@ -71,17 +81,43 @@ export default {
       type: Boolean,
       default: false
     },
-    src: {}
+    src: {},
+    picType: {
+      type: String
+    }
   },
 
   data() {
+    // HH0213WHI01  3:4
+    // HH0214BLK01  4:6
+    // HH0214BLL01  5:8
+    // HH0215WHI01  4:6
+    // TY0098WHI01  5:7
+    let aspectRatio = 1;
+    switch (this.picType) {
+      case "HH0213WHI01":
+        aspectRatio = 3 / 4;
+        break;
+      case "HH0214BLK01":
+        aspectRatio = 4 / 6;
+        break;
+      case "HH0214BLL01":
+        aspectRatio = 5 / 8;
+        break;
+      case "HH0215WHI01":
+        aspectRatio = 4 / 6;
+        break;
+      case "TY0098WHI01":
+        aspectRatio = 5 / 7;
+        break;
+    }
     return {
       imgLoading: true,
       scaleX: 1,
       scaleY: 1,
-      aspectRatio: 1,
-      originAspectRatio: 1,
-      judgeAspectRatio: true
+      aspectRatio
+      // originAspectRatio: 1
+      // judgeAspectRatio: true
     };
   },
 
@@ -112,15 +148,15 @@ export default {
   },
 
   methods: {
-    setAspectRatio() {
-      if (!this.judgeAspectRatio) {
-        this.judgeAspectRatio = true;
-        this.cropper.setAspectRatio(70 / 150);
-      } else {
-        this.judgeAspectRatio = false;
-        this.cropper.setAspectRatio(150 / 70);
-      }
-    },
+    // setAspectRatio() {
+    //   if (!this.judgeAspectRatio) {
+    //     this.judgeAspectRatio = true;
+    //     this.cropper.setAspectRatio(70 / 150);
+    //   } else {
+    //     this.judgeAspectRatio = false;
+    //     this.cropper.setAspectRatio(150 / 70);
+    //   }
+    // },
     cropperInit() {
       let image = new Image();
       this.imgLoading = true;

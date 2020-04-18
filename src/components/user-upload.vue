@@ -71,7 +71,7 @@
             </div>
           </template>
           <!-- 2 pic-->
-          <template v-if="type == 'pic'">
+          <template v-if="isPic">
             <div class="content__item">
               <h3>Setp 3:</h3>
               <div class="item__div">
@@ -162,15 +162,27 @@
             label-width="152px"
             :rules="formRules"
           >
-            <el-row :gutter="20" class="content-one">
+            <el-row
+              :gutter="20"
+              class="content-one"
+            >
               <el-col :span="24">
-                <el-form-item label="Voucher Code" prop="order">
-                  <el-input disabled v-model="form.order"></el-input>
+                <el-form-item
+                  label="Voucher Code"
+                  prop="order"
+                >
+                  <el-input
+                    disabled
+                    v-model="form.order"
+                  ></el-input>
                 </el-form-item>
               </el-col>
 
               <el-col :span="12">
-                <el-form-item label="Product" prop="model">
+                <el-form-item
+                  label="Product"
+                  prop="model"
+                >
                   <el-select
                     v-model="form.model"
                     placeholder="Choose"
@@ -183,7 +195,11 @@
                       :value="v"
                     ></el-option>
                   </el-select>
-                  <el-input disabled v-model="form.model" v-else></el-input>
+                  <el-input
+                    disabled
+                    v-model="form.model"
+                    v-else
+                  ></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -192,7 +208,10 @@
                 Recipient Info
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Customer Name" prop="customerName">
+                <el-form-item
+                  label="Customer Name"
+                  prop="customerName"
+                >
                   <el-input v-model="form.customerName"></el-input>
                 </el-form-item>
               </el-col>
@@ -213,17 +232,26 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="City" prop="city">
+                <el-form-item
+                  label="City"
+                  prop="city"
+                >
                   <el-input v-model="form.city"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="County" prop="county">
+                <el-form-item
+                  label="County"
+                  prop="county"
+                >
                   <el-input v-model="form.county"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Country" prop="country">
+                <el-form-item
+                  label="Country"
+                  prop="country"
+                >
                   <el-select
                     @change="handleCountryChange"
                     v-model="form.country"
@@ -239,17 +267,26 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Postcode" prop="postcode">
+                <el-form-item
+                  label="Postcode"
+                  prop="postcode"
+                >
                   <el-input v-model="form.postcode"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Phone" prop="phone">
+                <el-form-item
+                  label="Phone"
+                  prop="phone"
+                >
                   <el-input v-model="form.phone"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Email" prop="email">
+                <el-form-item
+                  label="Email"
+                  prop="email"
+                >
                   <el-input v-model="form.email"></el-input>
                 </el-form-item>
               </el-col>
@@ -269,7 +306,10 @@
                   <el-input v-model="form.personalizedWord"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type == 'doorbell'">
+              <el-col
+                :span="12"
+                v-if="type == 'doorbell'"
+              >
                 <el-form-item
                   :label="
                     type == 'doorbell' ? 'Street Name' : 'Customized Word2'
@@ -279,9 +319,18 @@
                   <el-input v-model="form.personalizedWord2"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type == 'doorbell'">
-                <el-form-item label="Color" prop="color">
-                  <el-select v-model="form.color" placeholder="Choose">
+              <el-col
+                :span="12"
+                v-if="type == 'doorbell'"
+              >
+                <el-form-item
+                  label="Color"
+                  prop="color"
+                >
+                  <el-select
+                    v-model="form.color"
+                    placeholder="Choose"
+                  >
                     <el-option
                       v-for="(v, i) in colors"
                       :key="i"
@@ -291,9 +340,17 @@
                   </el-select>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type == 'picword' || type == 'pic'">
-                <el-form-item label="Photo" prop="formSrc" ref="formItem">
+              <el-col
+                :span="12"
+                v-if="type == 'picword' || isPic"
+              >
+                <el-form-item
+                  label="Photo"
+                  prop="formSrc"
+                  ref="formItem"
+                >
                   <wonImage
+                    :picType="type"
                     :value="form.formSrc"
                     @input="
                       (form.formSrc = $event),
@@ -311,8 +368,7 @@
                     class="btn-right"
                     type="primary"
                     size="small"
-                    >Submit</el-button
-                  >
+                  >Submit</el-button>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -337,8 +393,15 @@
         <span class="tip">{{ uploadTip }}</span>
       </div>
       <div slot="content">
-        <img class="preview-img" :src="value" v-if="value" />
-        <span class="preview-error" v-else>{{ value }}</span>
+        <img
+          class="preview-img"
+          :src="value"
+          v-if="value"
+        />
+        <span
+          class="preview-error"
+          v-else
+        >{{ value }}</span>
       </div>
     </wonDialog>
   </div>
@@ -356,12 +419,20 @@ export default {
   },
   data() {
     let model = "";
-    console.log(this.type);
-
     if (this.type == "doorbell") {
       model = "doorbell";
     }
+    let pics = [
+      "pic",
+      "HH0213WHI01",
+      "HH0214BLK01",
+      "HH0214BLL01",
+      "HH0215WHI01",
+      "TY0098WHI01"
+    ];
+    let isPic = pics.includes(this.type);
     return {
+      isPic,
       value: "",
       previewVisible: false,
       title: "Upload Succeed!!!!",
