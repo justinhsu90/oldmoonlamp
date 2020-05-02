@@ -110,6 +110,9 @@ export default {
       case "TY0098WHI01":
         aspectRatio = 5 / 7;
         break;
+      case "circle":
+        aspectRatio = 1;
+        break;  
     }
     return {
       imgLoading: true,

@@ -34,7 +34,7 @@
             </div>
           </div>
           <!-- 1 word -->
-          <template v-if="type == 'word' || type == 'doorbell'">
+          <template v-if="isWord || type == 'doorbell'">
             <div class="content__item">
               <h3>Setp 3:</h3>
               <div class="item__div">
@@ -297,13 +297,59 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="type == 'picword' || type == 'word' || type == 'doorbell'"
+                v-if="type == 'picword' || isWord || type == 'doorbell'"
               >
                 <el-form-item
                   :label="type == 'doorbell' ? 'House NO.' : 'Customized Word'"
                   prop="personalizedWord"
                 >
-                  <el-input v-model="form.personalizedWord"></el-input>
+                  <el-input
+                    :maxlength="15"
+                    v-model="form.personalizedWord"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col
+                :span="12"
+                v-if="type == 'Test1234'"
+              >
+                <el-form-item
+                  label="Customized Word2"
+                  prop="personalizedWordTest2"
+                >
+                  <el-input
+                    :maxlength="15"
+                    v-model="form.personalizedWordTest2"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col
+                :span="12"
+                v-if="type == 'Test1234'"
+              >
+                <el-form-item
+                  label="Customized Word3"
+                  prop="personalizedWordTest3"
+                >
+                  <el-input
+                    :maxlength="15"
+                    v-model="form.personalizedWordTest3"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col
+                :span="12"
+                v-if="type == 'Test1234'"
+              >
+                <el-form-item
+                  label=""
+                  prop=""
+                >
+                  <el-button
+                    @click="handlePreviewClick"
+                    type="success"
+                    plain
+                  >点击预览</el-button>
                 </el-form-item>
               </el-col>
               <el-col
@@ -311,9 +357,7 @@
                 v-if="type == 'doorbell'"
               >
                 <el-form-item
-                  :label="
-                    type == 'doorbell' ? 'Street Name' : 'Customized Word2'
-                  "
+                  :label="type == 'doorbell' ? 'Street Name' : 'Customized Word2'"
                   prop="personalizedWord2"
                 >
                   <el-input v-model="form.personalizedWord2"></el-input>
@@ -404,6 +448,35 @@
         >{{ value }}</span>
       </div>
     </wonDialog>
+    <wonDialog
+      v-bind="{
+        width: '565px',
+        visible: testPreview,
+        hideConfirmBtn: true,
+        cancelText: 'Close'
+      }"
+      v-on="{
+        cancelDialog: this.testCancelPreviewDialog,
+        close: this.testCancelPreviewDialog
+      }"
+    >
+      <div slot="title">
+        <span>預覽</span>
+      </div>
+      <div slot="content">
+        <div class="preview-text-img">
+          <img
+            class="preview-img"
+            src="@/assets/img/circle.jpg"
+          />
+          <div class="preview-text">
+            <p>{{ form.personalizedWord }}</p>
+            <p>{{ form.personalizedWordTest2 }}</p>
+            <p>{{ form.personalizedWordTest3 }}</p>
+          </div>
+        </div>
+      </div>
+    </wonDialog>
   </div>
 </template>
 
@@ -428,11 +501,18 @@ export default {
       "HH0214BLK01",
       "HH0214BLL01",
       "HH0215WHI01",
-      "TY0098WHI01"
+      "TY0098WHI01",
+    ];
+    let words = [
+      "word",
+      "Test1234"
     ];
     let isPic = pics.includes(this.type);
+    let isWord = words.includes(this.type);
     return {
+      testPreview: false,
       isPic,
+      isWord,
       value: "",
       previewVisible: false,
       title: "Upload Succeed!!!!",
@@ -454,9 +534,11 @@ export default {
         country: "",
         postcode: "",
         phone: "",
-        email: ""
+        email: "",
+        personalizedWordTest2: "",
+        personalizedWordTest3: "",
       },
-      selectPhones: [],
+      selectPhones: [], 
       formRules: {
         customerName: {
           required: true,
@@ -549,7 +631,7 @@ export default {
         personalizedWord: {
           required: true,
           validator: (rule, value, callback) => {
-            if (this.type == "word" || this.type == "picword") {
+            if (isWord || this.type == "picword") {
               let rule = /^[0-9a-zA-ZÀ-ÿ-.,-_/#$@%&*();:'"+={}?! ]*$/;
               if (!rule.test(value)) {
                 callback(
@@ -571,6 +653,14 @@ export default {
           required: true,
           message: "required"
         },
+        // personalizedWordTest2: {
+        //   required: true,
+        //   message: "required"
+        // },
+        // personalizedWordTest3: {
+        //   required: true,
+        //   message: "required"
+        // },
         color: {
           required: true,
           message: "required"
@@ -605,13 +695,19 @@ export default {
     });
   },
   methods: {
+    handlePreviewClick(){
+      this.testPreview = true
+    },
     handleCountryChange() {
       this.$refs["form"].validateField("postcode");
+    },
+    testCancelPreviewDialog(){
+      this.testPreview = false;
     },
     cancelPreviewDialog() {
       this.previewVisible = false;
     },
-    toBlob: dataurl => {
+    toBlob: dataurl => { 
       var arr = dataurl.split(","),
         mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]),
@@ -647,6 +743,17 @@ export default {
 
           if (this.form.personalizedWord) {
             formData.append("personalizedWord", this.form.personalizedWord);
+          }
+
+          if (this.type == "Test1234") {
+            let str = this.form.personalizedWord;
+            if(!!this.form.personalizedWordTest2){
+              str += '\n' + this.form.personalizedWordTest2
+            }
+            if(!!this.form.personalizedWordTest3){
+              str += '\n' + this.form.personalizedWordTest3
+            }
+            formData.append("personalizedWord", str);
           }
 
           if (this.form.personalizedWord2) {
@@ -838,5 +945,22 @@ export default {
 
 /deep/ .el-form-item {
   margin-bottom: 19px !important;
+}
+
+.preview-text-img {
+  position: relative;
+}
+
+.preview-text {
+  position: absolute;
+  top: 115px;
+  left: 134px;
+  width: 265px;
+  text-align: center;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  p {
+    margin: 10px 0px;
+  }
 }
 </style>

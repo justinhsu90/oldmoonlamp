@@ -138,6 +138,12 @@ export default {
           height: "105px"
         };
         break;
+     case "circle":
+        specailStyle = {
+          width: "150px",
+          height: "150px"
+        };
+        break;   
     }
     return {
       visible: false,
@@ -151,6 +157,23 @@ export default {
     cancelDialog() {
       this.visible = false;
     },
+    // customCanvas(){
+    //     let crop = this.$refs["wonCropper"].cropper;                                                      //获取crop对象
+    //     let sourceCanvas=crop.getCroppedCanvas();
+    //     let canvas = document.createElement('canvas');
+    //     let context = canvas.getContext('2d');
+    //     let width = sourceCanvas.width;
+    //     let height = sourceCanvas.height;
+    //     canvas.width = width;
+    //     canvas.height = height;
+    //     context.imageSmoothingEnabled = true;
+    //     context.drawImage(sourceCanvas, 0, 0, width, height);
+    //     context.globalCompositeOperation = 'destination-in';
+    //     context.beginPath();
+    //     context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI, true);
+    //     context.fill();
+    //     return canvas;
+    // },
     confirmDialog() {
       let crop = this.$refs["wonCropper"].cropper;
       // let judgeAspectRatio = this.$refs["wonCropper"].judgeAspectRatio;
@@ -165,8 +188,8 @@ export default {
       //     height: "150px"
       //   };
       // }
-      let canvas = crop.getCroppedCanvas();
-      let src = canvas.toDataURL(this.type);
+      // let canvas = crop.getCroppedCanvas();
+      let src = canvas.toDataURL("image/png");
       this.$emit("input", src);
       this.visible = false;
     },
