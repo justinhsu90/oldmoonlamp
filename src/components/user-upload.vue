@@ -349,7 +349,7 @@
                     @click="handlePreviewClick"
                     type="success"
                     plain
-                  >点击预览</el-button>
+                  >Preview</el-button>
                 </el-form-item>
               </el-col>
               <el-col
@@ -982,7 +982,7 @@ export default {
   height: 270px;
   text-align: center;
   font-size: 16px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Chalkboard", Courier, monospace;
   border-radius: 50%;
   background: transparent;
   display: flex;
