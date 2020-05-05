@@ -304,7 +304,7 @@
                   prop="personalizedWord"
                 >
                   <el-input
-                    :maxlength="15"
+                    :maxlength="20"
                     v-model="form.personalizedWord"
                   ></el-input>
                 </el-form-item>
@@ -318,7 +318,7 @@
                   prop="personalizedWordTest2"
                 >
                   <el-input
-                    :maxlength="15"
+                    :maxlength="20"
                     v-model="form.personalizedWordTest2"
                   ></el-input>
                 </el-form-item>
@@ -332,7 +332,7 @@
                   prop="personalizedWordTest3"
                 >
                   <el-input
-                    :maxlength="15"
+                    :maxlength="20"
                     v-model="form.personalizedWordTest3"
                   ></el-input>
                 </el-form-item>
@@ -470,9 +470,32 @@
             src="@/assets/img/circle.jpg"
           />
           <div class="preview-text">
-            <p>{{ form.personalizedWord }}</p>
-            <p>{{ form.personalizedWordTest2 }}</p>
-            <p>{{ form.personalizedWordTest3 }}</p>
+            <div class="preview-text-container">
+              <p
+                v-if="form.personalizedWord"
+                :class="{
+                  PWfontSize40: form.personalizedWord.length <= 10,
+                  PWfontSize32: form.personalizedWord.length <= 15 && form.personalizedWord.length > 10,
+                  PWfontSize28: form.personalizedWord.length <= 40 & form.personalizedWord.length > 15,
+                }"
+              >{{ form.personalizedWord }}</p>
+              <p
+                v-if="form.personalizedWordTest2"
+                :class="{
+                  PWfontSize40: form.personalizedWordTest2.length <= 10,
+                  PWfontSize32: form.personalizedWordTest2.length <= 15 && form.personalizedWordTest2.length > 10,
+                  PWfontSize28: form.personalizedWordTest2.length <= 40 & form.personalizedWordTest2.length > 15,
+                }"
+              >{{ form.personalizedWordTest2 }}</p>
+              <p
+                v-if="form.personalizedWordTest3"
+                :class="{
+                  PWfontSize40: form.personalizedWordTest3.length <= 10,
+                  PWfontSize32: form.personalizedWordTest3.length <= 15 && form.personalizedWordTest3.length > 10,
+                  PWfontSize28: form.personalizedWordTest3.length <= 40 & form.personalizedWordTest3.length > 15,
+                }"
+              >{{ form.personalizedWordTest3 }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -953,14 +976,35 @@ export default {
 
 .preview-text {
   position: absolute;
-  top: 115px;
-  left: 134px;
-  width: 265px;
+  top: 30px;
+  left: 131px;
+  width: 270px;
+  height: 270px;
   text-align: center;
   font-size: 16px;
   font-family: "Courier New", Courier, monospace;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   p {
+    width: 100%;
     margin: 10px 0px;
   }
+}
+
+.preview-text-container {
+  flex: 1;
+}
+
+.PWfontSize40 {
+  font-size: 40px;
+}
+.PWfontSize32 {
+  font-size: 32px;
+}
+.PWfontSize20 {
+  font-size: 20px;
 }
 </style>
