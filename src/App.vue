@@ -14,15 +14,13 @@
         :wowchercode="form.order"
       ></User-Upload>
     </transition>
-    <wonDialog
-      v-bind="{
+    <wonDialog v-bind="{
         width: '525px',
         visible: previewVisible,
         hideConfirmBtn: true,
         hideCancelBtn: true,
         showClose: false
-      }"
-    >
+      }">
       <div slot="title"></div>
       <div slot="content">
         <el-form
@@ -34,7 +32,10 @@
           label-position="left"
           :rules="formRules"
         >
-          <el-form-item label="Voucher Code" prop="order">
+          <el-form-item
+            label="Voucher Code"
+            prop="order"
+          >
             <el-input v-model="form.order"></el-input>
           </el-form-item>
           <el-form-item>
@@ -43,8 +44,7 @@
               :loading="btnloading"
               type="primary"
               size="small"
-              >Submit</el-button
-            >
+            >Submit</el-button>
           </el-form-item>
         </el-form>
       </div>

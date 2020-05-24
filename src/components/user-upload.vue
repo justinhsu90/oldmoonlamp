@@ -311,7 +311,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="type == 'Test1234'"
+                v-if="isShowText"
               >
                 <el-form-item
                   label="Customized Word2"
@@ -325,7 +325,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="type == 'Test1234'"
+                v-if="isShowText"
               >
                 <el-form-item
                   label="Customized Word3"
@@ -339,7 +339,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="type == 'Test1234'"
+                v-if="isShowText"
               >
                 <el-form-item
                   label=""
@@ -357,7 +357,9 @@
                 v-if="type == 'doorbell'"
               >
                 <el-form-item
-                  :label="type == 'doorbell' ? 'Street Name' : 'Customized Word2'"
+                  :label="
+                    type == 'doorbell' ? 'Street Name' : 'Customized Word2'
+                  "
                   prop="personalizedWord2"
                 >
                   <el-input v-model="form.personalizedWord2"></el-input>
@@ -467,34 +469,56 @@
         <div class="preview-text-img">
           <img
             class="preview-img"
-            src="@/assets/img/circle.jpg"
+            :src="imgSrcObj[type]"
           />
-          <div class="preview-text">
+          <div :class="['preview-text', {
+            'preview-text-aaa': type == 'aaa',
+            'preview-text-bbb': type == 'bbb',
+            'preview-text-ccc': type == 'ccc',
+          }]">
             <div class="preview-text-container">
               <p
                 v-if="form.personalizedWord"
                 :class="{
                   PWfontSize40: form.personalizedWord.length <= 10,
-                  PWfontSize32: form.personalizedWord.length <= 15 && form.personalizedWord.length > 10,
-                  PWfontSize28: form.personalizedWord.length <= 40 & form.personalizedWord.length > 15,
+                  PWfontSize32:
+                    form.personalizedWord.length <= 15 &&
+                    form.personalizedWord.length > 10,
+                  PWfontSize28:
+                    (form.personalizedWord.length <= 40) &
+                    (form.personalizedWord.length > 15)
                 }"
-              >{{ form.personalizedWord }}</p>
+              >
+                {{ form.personalizedWord }}
+              </p>
               <p
                 v-if="form.personalizedWordTest2"
                 :class="{
                   PWfontSize40: form.personalizedWordTest2.length <= 10,
-                  PWfontSize32: form.personalizedWordTest2.length <= 15 && form.personalizedWordTest2.length > 10,
-                  PWfontSize28: form.personalizedWordTest2.length <= 40 & form.personalizedWordTest2.length > 15,
+                  PWfontSize32:
+                    form.personalizedWordTest2.length <= 15 &&
+                    form.personalizedWordTest2.length > 10,
+                  PWfontSize28:
+                    (form.personalizedWordTest2.length <= 40) &
+                    (form.personalizedWordTest2.length > 15)
                 }"
-              >{{ form.personalizedWordTest2 }}</p>
+              >
+                {{ form.personalizedWordTest2 }}
+              </p>
               <p
                 v-if="form.personalizedWordTest3"
                 :class="{
                   PWfontSize40: form.personalizedWordTest3.length <= 10,
-                  PWfontSize32: form.personalizedWordTest3.length <= 15 && form.personalizedWordTest3.length > 10,
-                  PWfontSize28: form.personalizedWordTest3.length <= 40 & form.personalizedWordTest3.length > 15,
+                  PWfontSize32:
+                    form.personalizedWordTest3.length <= 15 &&
+                    form.personalizedWordTest3.length > 10,
+                  PWfontSize28:
+                    (form.personalizedWordTest3.length <= 40) &
+                    (form.personalizedWordTest3.length > 15)
                 }"
-              >{{ form.personalizedWordTest3 }}</p>
+              >
+                {{ form.personalizedWordTest3 }}
+              </p>
             </div>
           </div>
         </div>
@@ -524,15 +548,21 @@ export default {
       "HH0214BLK01",
       "HH0214BLL01",
       "HH0215WHI01",
-      "TY0098WHI01",
+      "TY0098WHI01"
     ];
-    let words = [
-      "word",
-      "Test1234"
-    ];
+    // aaa,bbb,ccc,ddd
+    let words = ["word", "Test1234", "aaa", "bbb", "ccc"];
+    let isShowText = ["Test1234", "aaa", "bbb", "ccc"]
+    this.imgSrcObj = {
+      "Test1234": require("@/assets/img/circle.jpg"),
+      "aaa": require("@/assets/img/text-one.jpg"),
+      "bbb": require("@/assets/img/text-two.jpg"),
+      "ccc": require("@/assets/img/text-three.jpg"),
+    }
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);
     return {
+      isShowText,
       testPreview: false,
       isPic,
       isWord,
@@ -559,9 +589,9 @@ export default {
         phone: "",
         email: "",
         personalizedWordTest2: "",
-        personalizedWordTest3: "",
+        personalizedWordTest3: ""
       },
-      selectPhones: [], 
+      selectPhones: [],
       formRules: {
         customerName: {
           required: true,
@@ -718,19 +748,19 @@ export default {
     });
   },
   methods: {
-    handlePreviewClick(){
-      this.testPreview = true
+    handlePreviewClick() {
+      this.testPreview = true;
     },
     handleCountryChange() {
       this.$refs["form"].validateField("postcode");
     },
-    testCancelPreviewDialog(){
+    testCancelPreviewDialog() {
       this.testPreview = false;
     },
     cancelPreviewDialog() {
       this.previewVisible = false;
     },
-    toBlob: dataurl => { 
+    toBlob: dataurl => {
       var arr = dataurl.split(","),
         mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]),
@@ -768,13 +798,13 @@ export default {
             formData.append("personalizedWord", this.form.personalizedWord);
           }
 
-          if (this.type == "Test1234") {
+          if (this.isShowText) {
             let str = this.form.personalizedWord;
-            if(!!this.form.personalizedWordTest2){
-              str += '\n' + this.form.personalizedWordTest2
+            if (this.form.personalizedWordTest2) {
+              str += "\n" + this.form.personalizedWordTest2;
             }
-            if(!!this.form.personalizedWordTest3){
-              str += '\n' + this.form.personalizedWordTest3
+            if (this.form.personalizedWordTest3) {
+              str += "\n" + this.form.personalizedWordTest3;
             }
             formData.append("personalizedWord", str);
           }
@@ -992,6 +1022,20 @@ export default {
     width: 100%;
     margin: 10px 0px;
   }
+}
+
+.preview-text-aaa {
+  top: 37px;
+}
+
+.preview-text-bbb {
+  top: 95px;
+  left: 111px;
+}
+
+.preview-text-ccc {
+  top: 115px;
+  left: 127px;
 }
 
 .preview-text-container {
