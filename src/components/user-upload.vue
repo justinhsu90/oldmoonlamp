@@ -325,7 +325,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="isShowText"
+                v-if="isShowText && type != 'bbb'"
               >
                 <el-form-item
                   label="Customized Word3"
@@ -471,11 +471,14 @@
             class="preview-img"
             :src="imgSrcObj[type]"
           />
-          <div :class="['preview-text', {
-            'preview-text-aaa': type == 'aaa',
-            'preview-text-bbb': type == 'bbb',
-            'preview-text-ccc': type == 'ccc',
-          }]">
+          <div :class="[
+              'preview-text',
+              {
+                'preview-text-aaa': type == 'aaa',
+                'preview-text-bbb': type == 'bbb',
+                'preview-text-ccc': type == 'ccc'
+              }
+            ]">
             <div class="preview-text-container">
               <p
                 v-if="form.personalizedWord"
@@ -552,13 +555,13 @@ export default {
     ];
     // aaa,bbb,ccc,ddd
     let words = ["word", "Test1234", "aaa", "bbb", "ccc"];
-    let isShowText = ["Test1234", "aaa", "bbb", "ccc"]
+    let isShowText = ["Test1234", "aaa", "bbb", "ccc"];
     this.imgSrcObj = {
-      "Test1234": require("@/assets/img/circle.jpg"),
-      "aaa": require("@/assets/img/text-one.jpg"),
-      "bbb": require("@/assets/img/text-two.jpg"),
-      "ccc": require("@/assets/img/text-three.jpg"),
-    }
+      Test1234: require("@/assets/img/circle.jpg"),
+      aaa: require("@/assets/img/text-one.jpg"),
+      bbb: require("@/assets/img/text-two.jpg"),
+      ccc: require("@/assets/img/text-three.jpg")
+    };
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);
     return {
@@ -1026,6 +1029,12 @@ export default {
 
 .preview-text-aaa {
   top: 37px;
+  p:nth-child(1) {
+    margin-top: 40px;
+  }
+  p:nth-child(2) {
+    margin-top: 120px;
+  }
 }
 
 .preview-text-bbb {
