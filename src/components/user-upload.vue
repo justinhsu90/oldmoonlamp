@@ -492,7 +492,22 @@
                     (form.personalizedWord.length > 15)
                 }"
               >
-                {{ form.personalizedWord }}
+                <template v-if="type == 'aaa'">
+                  <span
+                    :class="{
+                      'word-color-one': (i + 1) % 5 == 1,
+                      'word-color-two': (i + 1) % 5 == 2,
+                      'word-color-three': (i + 1) % 5 == 3,
+                      'word-color-four': (i + 1) % 5 == 4,
+                      'word-color-five': (i + 1) % 5 == 0
+                    }"
+                    v-for="(v, i) in form.personalizedWord"
+                    :key="i"
+                  >{{ v }}</span>
+                </template>
+                <span v-else>
+                  {{ form.personalizedWord }}
+                </span>
               </p>
               <p
                 v-if="form.personalizedWordTest2"
@@ -506,7 +521,23 @@
                     (form.personalizedWordTest2.length > 15)
                 }"
               >
-                {{ form.personalizedWordTest2 }}
+                <template v-if="type == 'aaa'">
+                  <span
+                    :class="{
+                      'word-color-one': (i + 1) % 5 == 1,
+                      'word-color-two': (i + 1) % 5 == 2,
+                      'word-color-three': (i + 1) % 5 == 3,
+                      'word-color-four': (i + 1) % 5 == 4,
+                      'word-color-five': (i + 1) % 5 == 0
+                    }"
+                    v-for="(v, i) in form.personalizedWordTest2"
+                    :key="i"
+                  >{{ v }}
+                  </span>
+                </template>
+                <span v-else>
+                  {{ form.personalizedWordTest2 }}
+                </span>
               </p>
               <p
                 v-if="form.personalizedWordTest3"
@@ -520,7 +551,23 @@
                     (form.personalizedWordTest3.length > 15)
                 }"
               >
-                {{ form.personalizedWordTest3 }}
+                <template v-if="type == 'aaa'">
+                  <span
+                    :class="{
+                      'word-color-one': (i + 1) % 5 == 1,
+                      'word-color-two': (i + 1) % 5 == 2,
+                      'word-color-three': (i + 1) % 5 == 3,
+                      'word-color-four': (i + 1) % 5 == 4,
+                      'word-color-five': (i + 1) % 5 == 0
+                    }"
+                    v-for="(v, i) in form.personalizedWordTest3"
+                    :key="i"
+                  >{{ v }}
+                  </span>
+                </template>
+                <span v-else>
+                  {{ form.personalizedWordTest3 }}
+                </span>
               </p>
             </div>
           </div>
@@ -1059,5 +1106,21 @@ export default {
 }
 .PWfontSize20 {
   font-size: 20px;
+}
+
+.word-color-one {
+  color: red;
+}
+.word-color-two {
+  color: green;
+}
+.word-color-three {
+  color: blue;
+}
+.word-color-four {
+  color: yellow;
+}
+.word-color-five {
+  color: violet;
 }
 </style>
