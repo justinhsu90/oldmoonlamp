@@ -339,6 +339,20 @@
               </el-col>
               <el-col
                 :span="12"
+                v-if="isShowText && type == 'aaa'"
+              >
+                <el-form-item
+                  label="Customized Word4"
+                  prop="personalizedWordTest4"
+                >
+                  <el-input
+                    :maxlength="20"
+                    v-model="form.personalizedWordTest4"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col
+                :span="12"
                 v-if="isShowText"
               >
                 <el-form-item
@@ -569,6 +583,36 @@
                   {{ form.personalizedWordTest3 }}
                 </span>
               </p>
+              <p
+                v-if="form.personalizedWordTest4"
+                :class="{
+                  PWfontSize40: form.personalizedWordTest3.length <= 10,
+                  PWfontSize32:
+                    form.personalizedWordTest3.length <= 15 &&
+                    form.personalizedWordTest3.length > 10,
+                  PWfontSize28:
+                    (form.personalizedWordTest3.length <= 40) &
+                    (form.personalizedWordTest3.length > 15)
+                }"
+              >
+                <template v-if="type == 'aaa'">
+                  <span
+                    :class="{
+                      'word-color-one': (i + 1) % 5 == 1,
+                      'word-color-two': (i + 1) % 5 == 2,
+                      'word-color-three': (i + 1) % 5 == 3,
+                      'word-color-four': (i + 1) % 5 == 4,
+                      'word-color-five': (i + 1) % 5 == 0
+                    }"
+                    v-for="(v, i) in form.personalizedWordTest4"
+                    :key="i"
+                  >{{ v }}
+                  </span>
+                </template>
+                <span v-else>
+                  {{ form.personalizedWordTest4 }}
+                </span>
+              </p>
             </div>
           </div>
         </div>
@@ -639,7 +683,8 @@ export default {
         phone: "",
         email: "",
         personalizedWordTest2: "",
-        personalizedWordTest3: ""
+        personalizedWordTest3: "",
+        personalizedWordTest4: ""
       },
       selectPhones: [],
       formRules: {
@@ -855,6 +900,9 @@ export default {
             }
             if (this.form.personalizedWordTest3) {
               str += "\n" + this.form.personalizedWordTest3;
+            }
+            if (this.form.personalizedWordTest4) {
+              str += "\n" + this.form.personalizedWordTest4;
             }
             formData.append("personalizedWord", str);
           }
@@ -1076,22 +1124,50 @@ export default {
 
 .preview-text-aaa {
   top: 37px;
+  p {
+    line-height: 1em;
+  }
   p:nth-child(1) {
-    margin-top: 40px;
+    margin-top: 13px;
   }
   p:nth-child(2) {
-    margin-top: 120px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+  p:nth-child(3) {
+    margin: 0px;
+  }
+  p:nth-child(4) {
+    margin: 0px;
   }
 }
 
 .preview-text-bbb {
-  top: 95px;
-  left: 111px;
+  top: 120px;
+  left: 130px;
+  p {
+    line-height: 1em;
+  }
+  p:nth-child(1) {
+    margin-bottom: 0px;
+  }
+  p:nth-child(2) {
+    margin-bottom: 0px;
+  }
 }
 
 .preview-text-ccc {
   top: 115px;
   left: 127px;
+  p {
+    line-height: 1em;
+  }
+  p:nth-child(1) {
+    margin-bottom: 0px;
+  }
+  p:nth-child(2) {
+    margin-bottom: 0px;
+  }
 }
 
 .preview-text-container {
