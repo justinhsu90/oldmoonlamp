@@ -325,7 +325,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="isShowText && type != 'bbb'"
+                v-if="isShowText && type != 'HH0215STF01'"
               >
                 <el-form-item
                   label="Customized Word3"
@@ -339,7 +339,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="isShowText && type == 'aaa'"
+                v-if="isShowText && type == 'HH0215STG01'"
               >
                 <el-form-item
                   label="Customized Word4"
@@ -488,9 +488,9 @@
           <div :class="[
               'preview-text',
               {
-                'preview-text-aaa': type == 'aaa',
-                'preview-text-bbb': type == 'bbb',
-                'preview-text-ccc': type == 'ccc'
+                'preview-text-aaa': type == 'HH0215STG01',
+                'preview-text-bbb': type == 'HH0215STF01',
+                'preview-text-ccc': type == 'HH0215STH01'
               }
             ]">
             <div class="preview-text-container">
@@ -507,7 +507,7 @@
                     (form.personalizedWord.length > 15)
                 }"
               >
-                <template v-if="type == 'aaa'">
+                <template v-if="type == 'HH0215STG01'">
                   <span
                     :class="{
                       'word-color-one': (i + 1) % 4 == 1,
@@ -536,7 +536,7 @@
                     (form.personalizedWordTest2.length > 15)
                 }"
               >
-                <template v-if="type == 'aaa'">
+                <template v-if="type == 'HH0215STG01'">
                   <span
                     :class="{
                       'word-color-one': (i + 1) % 4 == 1,
@@ -566,7 +566,7 @@
                     (form.personalizedWordTest3.length > 15)
                 }"
               >
-                <template v-if="type == 'aaa'">
+                <template v-if="type == 'HH0215STG01'">
                   <span
                     :class="{
                       'word-color-one': (i + 1) % 4 == 1,
@@ -596,7 +596,7 @@
                     (form.personalizedWordTest3.length > 15)
                 }"
               >
-                <template v-if="type == 'aaa'">
+                <template v-if="type == 'HH0215STG01'">
                   <span
                     :class="{
                       'word-color-one': (i + 1) % 4 == 1,
@@ -645,13 +645,13 @@ export default {
       "TY0098WHI01"
     ];
     // aaa,bbb,ccc,ddd
-    let words = ["word", "Test1234", "aaa", "bbb", "ccc"];
-    let isShowText = ["Test1234", "aaa", "bbb", "ccc"];
+    let words = ["word", "HH0215STA01", "HH0215STG01", "HH0215STF01", "HH0215STH01"];
+    let isShowText = ["HH0215STA01", "HH0215STG01", "HH0215STF01", "HH0215STH01"];
     this.imgSrcObj = {
-      Test1234: require("@/assets/img/circle.jpg"),
-      aaa: require("@/assets/img/text-one.jpg"),
-      bbb: require("@/assets/img/text-two.jpg"),
-      ccc: require("@/assets/img/text-three.jpg")
+      HH0215STA01: require("@/assets/img/HH0215STA01.jpg"),
+      HH0215STG01: require("@/assets/img/HH0215STG01.jpg"),
+      HH0215STF01: require("@/assets/img/HH0215STF01.jpg"),
+      HH0215STH01: require("@/assets/img/HH0215STH01.jpg")
     };
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);

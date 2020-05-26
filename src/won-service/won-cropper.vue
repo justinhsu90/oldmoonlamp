@@ -110,7 +110,7 @@ export default {
       case "TY0098WHI01":
         aspectRatio = 5 / 7;
         break;
-      case "circle":
+      case "HH0215STA01":
         aspectRatio = 1;
         break;  
     }

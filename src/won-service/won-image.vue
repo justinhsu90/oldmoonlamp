@@ -138,7 +138,7 @@ export default {
           height: "105px"
         };
         break;
-     case "circle":
+     case "HH0215STA01":
         specailStyle = {
           width: "150px",
           height: "150px"
