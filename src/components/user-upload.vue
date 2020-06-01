@@ -490,7 +490,8 @@
               {
                 'preview-text-aaa': type == 'HH0215STG01',
                 'preview-text-bbb': type == 'HH0215STF01',
-                'preview-text-ccc': type == 'HH0215STH01'
+                'preview-text-ccc': type == 'HH0215STH01',
+                'preview-text-ddd': type == 'HH0215STA01'
               }
             ]">
             <div class="preview-text-container">
@@ -1132,23 +1133,40 @@ export default {
     justify-content: center;
   }
   p:nth-child(1) {
-    margin-top: 13px;
+    margin-top: 0px;
   }
   p:nth-child(2) {
-    margin-top: 20px;
-    margin-bottom: 0px;
+    margin-top: 26px;
+    margin-bottom: -10px;
   }
   p:nth-child(3) {
-    margin: 0px;
+    margin-top: 10px;
   }
   p:nth-child(4) {
-    margin: 0px;
+    margin-top: 10px;
   }
 }
 
 .preview-text-bbb {
-  top: 120px;
+  top: 38px;
   left: 130px;
+  p {
+    line-height: 1em;
+  }
+  p:nth-child(1) {
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  p:nth-child(2) {
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+}
+
+.preview-text-ccc {
+  top: 119px;
+  left: 127px;
+  height: 104px;
   p {
     line-height: 1em;
   }
@@ -1160,9 +1178,9 @@ export default {
   }
 }
 
-.preview-text-ccc {
-  top: 115px;
-  left: 127px;
+.preview-text-ddd {
+  top: -16px;
+  left: 146px;
   p {
     line-height: 1em;
   }
