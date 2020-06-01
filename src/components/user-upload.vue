@@ -325,7 +325,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="isShowText && type != 'HH0215STF01'"
+                v-if="isShowText && type != 'HH0215STF01' && type != 'HH0215STF01' && type != 'HH0215STH01'"
               >
                 <el-form-item
                   label="Customized Word3"
@@ -645,16 +645,15 @@ export default {
       "TY0098WHI01",
       "HH0210PNK01",
       "HH0215CUS01"
-    ];
-    // aaa,bbb,ccc,ddd
+    ]; 
 
-    let words = ["word", "ddd", "aaa", "bbb", "ccc"];
-    let isShowText = ["ddd", "aaa", "bbb", "ccc"].includes(this.type);
+    let words = ["word", "HH0215STA01", "HH0215STG01", "HH0215STF01", "HH0215STH01"];
+    let isShowText = ["HH0215STA01", "HH0215STG01", "HH0215STF01", "HH0215STH01"].includes(this.type);
     this.imgSrcObj = {
-      ddd: require("@/assets/img/HH0215STA01.jpg"),
-      aaa: require("@/assets/img/HH0215STG01.jpg"),
-      bbb: require("@/assets/img/HH0215STF01.jpg"),
-      ccc: require("@/assets/img/HH0215STH01.jpg")
+      HH0215STA01: require("@/assets/img/HH0215STA01.jpg"),
+      HH0215STG01: require("@/assets/img/HH0215STG01.jpg"),
+      HH0215STF01: require("@/assets/img/HH0215STF01.jpg"),
+      HH0215STH01: require("@/assets/img/HH0215STH01.jpg")
     };
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);
