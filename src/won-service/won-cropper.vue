@@ -110,6 +110,9 @@ export default {
       case "TY0098WHI01":
         aspectRatio = 5 / 7;
         break;
+      case "HH0215CUS01":
+        aspectRatio = 3 / 2;
+        break;  
       case "HH0215STA01":
         aspectRatio = 1;
         break;  

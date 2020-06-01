@@ -642,12 +642,14 @@ export default {
       "HH0214BLK01",
       "HH0214BLL01",
       "HH0215WHI01",
-      "TY0098WHI01"
+      "TY0098WHI01",
+      "HH0210PNK01",
+      "HH0215CUS01"
     ];
     // aaa,bbb,ccc,ddd
 
     let words = ["word", "ddd", "aaa", "bbb", "ccc"];
-    let isShowText = ["ddd", "aaa", "bbb", "ccc"];
+    let isShowText = ["ddd", "aaa", "bbb", "ccc"].includes(this.type);
     this.imgSrcObj = {
       ddd: require("@/assets/img/HH0215STA01.jpg"),
       aaa: require("@/assets/img/HH0215STG01.jpg"),

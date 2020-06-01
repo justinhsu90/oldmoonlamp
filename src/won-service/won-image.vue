@@ -143,7 +143,13 @@ export default {
           width: "150px",
           height: "150px"
         };
-        break;   
+        break; 
+    case "HH0215CUS01":
+        specailStyle = {
+          width: "150px",
+          height: "100px"
+        };
+        break;       
     }
     return {
       visible: false,
@@ -181,7 +187,7 @@ export default {
       //   this.specailStyle = {
       //     width: "150px",
       //     height: "150px"
-      //   };
+      //   }; 
       // } else {
       //   this.specailStyle = {
       //     width: "150px",
