@@ -497,7 +497,6 @@
               <p
                 v-if="form.personalizedWord"
                 :class="{
-                  lineOne: true,
                   PWfontSize40: form.personalizedWord.length <= 10,
                   PWfontSize32:
                     form.personalizedWord.length <= 15 &&
@@ -510,10 +509,11 @@
                 <template v-if="type == 'HH0215STG01'">
                   <span
                     :class="{
-                      'word-color-one': (i + 1) % 4 == 1,
-                      'word-color-two': (i + 1) % 4 == 2,
-                      'word-color-three': (i + 1) % 4 == 3,
-                      'word-color-four': (i + 1) % 4 == 0,
+                      'word-color-one': (i + 1) % 5 == 1,
+                      'word-color-two': (i + 1) % 5 == 2,
+                      'word-color-three': (i + 1) % 5 == 3,
+                      'word-color-four': (i + 1) % 5 == 4,
+                      'word-color-five': (i + 1) % 5 == 0
                     }"
                     v-for="(v, i) in form.personalizedWord"
                     :key="i"
@@ -526,7 +526,6 @@
               <p
                 v-if="form.personalizedWordTest2"
                 :class="{
-                  lineTwo: true,
                   PWfontSize40: form.personalizedWordTest2.length <= 10,
                   PWfontSize32:
                     form.personalizedWordTest2.length <= 15 &&
@@ -539,10 +538,11 @@
                 <template v-if="type == 'HH0215STG01'">
                   <span
                     :class="{
-                      'word-color-one': (i + 1) % 4 == 1,
-                      'word-color-two': (i + 1) % 4 == 2,
-                      'word-color-three': (i + 1) % 4 == 3,
-                      'word-color-four': (i + 1) % 4 == 0,
+                      'word-color-one': (i + 1) % 5 == 1,
+                      'word-color-two': (i + 1) % 5 == 2,
+                      'word-color-three': (i + 1) % 5 == 3,
+                      'word-color-four': (i + 1) % 5 == 4,
+                      'word-color-five': (i + 1) % 5 == 0
                     }"
                     v-for="(v, i) in form.personalizedWordTest2"
                     :key="i"
@@ -556,7 +556,6 @@
               <p
                 v-if="form.personalizedWordTest3"
                 :class="{
-                  lineThree: true,
                   PWfontSize40: form.personalizedWordTest3.length <= 10,
                   PWfontSize32:
                     form.personalizedWordTest3.length <= 15 &&
@@ -569,10 +568,11 @@
                 <template v-if="type == 'HH0215STG01'">
                   <span
                     :class="{
-                      'word-color-one': (i + 1) % 4 == 1,
-                      'word-color-two': (i + 1) % 4 == 2,
-                      'word-color-three': (i + 1) % 4 == 3,
-                      'word-color-four': (i + 1) % 4 == 0,
+                      'word-color-one': (i + 1) % 5 == 1,
+                      'word-color-two': (i + 1) % 5 == 2,
+                      'word-color-three': (i + 1) % 5 == 3,
+                      'word-color-four': (i + 1) % 5 == 4,
+                      'word-color-five': (i + 1) % 5 == 0
                     }"
                     v-for="(v, i) in form.personalizedWordTest3"
                     :key="i"
@@ -586,7 +586,6 @@
               <p
                 v-if="form.personalizedWordTest4"
                 :class="{
-                  lineFour: true,
                   PWfontSize40: form.personalizedWordTest3.length <= 10,
                   PWfontSize32:
                     form.personalizedWordTest3.length <= 15 &&
@@ -599,10 +598,11 @@
                 <template v-if="type == 'HH0215STG01'">
                   <span
                     :class="{
-                      'word-color-one': (i + 1) % 4 == 1,
-                      'word-color-two': (i + 1) % 4 == 2,
-                      'word-color-three': (i + 1) % 4 == 3,
-                      'word-color-four': (i + 1) % 4 == 0,
+                      'word-color-one': (i + 1) % 5 == 1,
+                      'word-color-two': (i + 1) % 5 == 2,
+                      'word-color-three': (i + 1) % 5 == 3,
+                      'word-color-four': (i + 1) % 5 == 4,
+                      'word-color-five': (i + 1) % 5 == 0
                     }"
                     v-for="(v, i) in form.personalizedWordTest4"
                     :key="i"
@@ -645,13 +645,14 @@ export default {
       "TY0098WHI01"
     ];
     // aaa,bbb,ccc,ddd
-    let words = ["word", "HH0215STA01", "HH0215STG01", "HH0215STF01", "HH0215STH01"];
-    let isShowText = ["HH0215STA01", "HH0215STG01", "HH0215STF01", "HH0215STH01"];
+
+    let words = ["word", "ddd", "aaa", "bbb", "ccc"];
+    let isShowText = ["ddd", "aaa", "bbb", "ccc"];
     this.imgSrcObj = {
-      HH0215STA01: require("@/assets/img/HH0215STA01.jpg"),
-      HH0215STG01: require("@/assets/img/HH0215STG01.jpg"),
-      HH0215STF01: require("@/assets/img/HH0215STF01.jpg"),
-      HH0215STH01: require("@/assets/img/HH0215STH01.jpg")
+      ddd: require("@/assets/img/HH0215STA01.jpg"),
+      aaa: require("@/assets/img/HH0215STG01.jpg"),
+      bbb: require("@/assets/img/HH0215STF01.jpg"),
+      ccc: require("@/assets/img/HH0215STH01.jpg")
     };
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);
@@ -1126,8 +1127,6 @@ export default {
   top: 37px;
   p {
     line-height: 1em;
-    display: flex;
-    justify-content: center;
   }
   p:nth-child(1) {
     margin-top: 13px;
@@ -1186,63 +1185,19 @@ export default {
   font-size: 20px;
 }
 
-.lineOne {
-  .word-color-one {
-    color: #eeaaad;
-  }
-  .word-color-two {
-    color: #a7d8d9;
-  }
-  .word-color-three {
-    color: #ebb7bd;
-  }
-  .word-color-four {
-    color: #fffc8f;
-  }
+.word-color-one {
+  color: red;
 }
-
-.lineTwo {
-  .word-color-one {
-    color: #a7d8d9;
-  }
-  .word-color-two {
-    color: #fffc8f;
-  }
-  .word-color-three {
-    color: #eeaaad;
-  }
-  .word-color-four {
-    color: #ebb7bd;
-  }
+.word-color-two {
+  color: green;
 }
-
-.lineThree {
-  .word-color-one {
-    color: #eeaaad;
-  }
-  .word-color-two {
-    color: #a7d8d9;
-  }
-  .word-color-three {
-    color: #ebb7bd;
-  }
-  .word-color-four {
-    color: #fffc8f;
-  }
+.word-color-three {
+  color: blue;
 }
-
-.lineFour {
-  .word-color-one {
-    color: #a7d8d9;
-  }
-  .word-color-two {
-    color: #fffc8f;
-  }
-  .word-color-three {
-    color: #eeaaad;
-  }
-  .word-color-four {
-    color: #ebb7bd;
-  }
+.word-color-four {
+  color: yellow;
+}
+.word-color-five {
+  color: violet;
 }
 </style>
