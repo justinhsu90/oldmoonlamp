@@ -645,13 +645,13 @@ export default {
       "TY0098WHI01"
     ];
     // aaa,bbb,ccc,ddd
-    let words = ["word", "Test1234", "aaa", "bbb", "ccc"];
-    let isShowText = ["Test1234", "aaa", "bbb", "ccc"];
+    let words = ["word", "ddd", "aaa", "bbb", "ccc"];
+    let isShowText = ["ddd", "aaa", "bbb", "ccc"];
     this.imgSrcObj = {
-      Test1234: require("@/assets/img/circle.jpg"),
-      aaa: require("@/assets/img/text-one.jpg"),
-      bbb: require("@/assets/img/text-two.jpg"),
-      ccc: require("@/assets/img/text-three.jpg")
+      ddd: require("@/assets/img/HH0215STA01.jpg"),
+      aaa: require("@/assets/img/HH0215STG01.jpg"),
+      bbb: require("@/assets/img/HH0215STF01.jpg"),
+      ccc: require("@/assets/img/HH0215STH01.jpg")
     };
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);
