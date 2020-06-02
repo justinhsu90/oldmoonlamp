@@ -194,7 +194,7 @@ export default {
       //     height: "150px"
       //   };
       // }
-      // let canvas = crop.getCroppedCanvas();
+      let canvas = crop.getCroppedCanvas();
       let src = canvas.toDataURL("image/png");
       this.$emit("input", src);
       this.visible = false;
