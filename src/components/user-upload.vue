@@ -892,25 +892,25 @@ export default {
           formData.append("phone", this.form.phone);
           formData.append("email", this.form.email);
 
-          if (this.form.personalizedWord) {
+          if (!this.isShowText&&this.form.personalizedWord) {
             formData.append("personalizedWord", this.form.personalizedWord);
           }
 
           if (this.isShowText) {
-            let str = this.form.personalizedWord;
+            let str = "{\"first\":\""+this.form.personalizedWord + "\"},";
             if (this.form.personalizedWordTest2) {
-              str += "\n" + this.form.personalizedWordTest2;
+              str += "{\"second\":\""+ this.form.personalizedWordTest2 + "\"},";
             }
             if (this.form.personalizedWordTest3) {
-              str += "\n" + this.form.personalizedWordTest3;
+              str +="{\"third\":\"" + this.form.personalizedWordTest3 + "\"},";
             }
             if (this.form.personalizedWordTest4) {
-              str += "\n" + this.form.personalizedWordTest4;
+              str += "{\"forth\":\""+ this.form.personalizedWordTest4+"\"}";
             }
-            formData.append("personalizedWord", str);
+            formData.append("personalizedWord", "{\"value\":["+str+"}]");
           }
 
-          if (this.form.personalizedWord2) {
+          if (!this.isShowText&&this.form.personalizedWord2) {
             formData.append("personalizedWord2", this.form.personalizedWord2);
           }
 
