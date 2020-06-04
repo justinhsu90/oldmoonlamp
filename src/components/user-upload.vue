@@ -325,7 +325,12 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="isShowText && type != 'HH0215STF01' && type != 'HH0215STF01' && type != 'HH0215STH01'"
+                v-if="
+                  isShowText &&
+                    type != 'HH0215STF01' &&
+                    type != 'HH0215STF01' &&
+                    type != 'HH0215STH01'
+                "
               >
                 <el-form-item
                   label="Customized Word3"
@@ -467,7 +472,7 @@
     <wonDialog
       v-bind="{
         width: '565px',
-        visible: testPreview,
+        visible: testPreview && previewSrc,
         hideConfirmBtn: true,
         cancelText: 'Close'
       }"
@@ -482,10 +487,13 @@
       <div slot="content">
         <div class="preview-text-img">
           <img
-            class="preview-img"
-            :src="imgSrcObj[type]"
+            style="width:100%"
+            :src="previewSrc"
+            alt=""
           />
-          <div :class="[
+          <!-- <img class="preview-img" :src="imgSrcObj[type]" /> -->
+          <!-- <div
+            :class="[
               'preview-text',
               {
                 'preview-text-aaa': type == 'HH0215STG01',
@@ -493,7 +501,8 @@
                 'preview-text-ccc': type == 'HH0215STH01',
                 'preview-text-ddd': type == 'HH0215STA01'
               }
-            ]">
+            ]"
+          >
             <div class="preview-text-container">
               <p
                 v-if="form.personalizedWord"
@@ -514,11 +523,12 @@
                       'word-color-one': (i + 1) % 4 == 1,
                       'word-color-two': (i + 1) % 4 == 2,
                       'word-color-three': (i + 1) % 4 == 3,
-                      'word-color-four': (i + 1) % 4 == 0,
+                      'word-color-four': (i + 1) % 4 == 0
                     }"
                     v-for="(v, i) in form.personalizedWord"
                     :key="i"
-                  >{{ v }}</span>
+                    >{{ v }}</span
+                  >
                 </template>
                 <span v-else>
                   {{ form.personalizedWord }}
@@ -543,11 +553,11 @@
                       'word-color-one': (i + 1) % 4 == 1,
                       'word-color-two': (i + 1) % 4 == 2,
                       'word-color-three': (i + 1) % 4 == 3,
-                      'word-color-four': (i + 1) % 4 == 0,
+                      'word-color-four': (i + 1) % 4 == 0
                     }"
                     v-for="(v, i) in form.personalizedWordTest2"
                     :key="i"
-                  >{{ v }}
+                    >{{ v }}
                   </span>
                 </template>
                 <span v-else>
@@ -573,11 +583,11 @@
                       'word-color-one': (i + 1) % 4 == 1,
                       'word-color-two': (i + 1) % 4 == 2,
                       'word-color-three': (i + 1) % 4 == 3,
-                      'word-color-four': (i + 1) % 4 == 0,
+                      'word-color-four': (i + 1) % 4 == 0
                     }"
                     v-for="(v, i) in form.personalizedWordTest3"
                     :key="i"
-                  >{{ v }}
+                    >{{ v }}
                   </span>
                 </template>
                 <span v-else>
@@ -603,11 +613,11 @@
                       'word-color-one': (i + 1) % 4 == 1,
                       'word-color-two': (i + 1) % 4 == 2,
                       'word-color-three': (i + 1) % 4 == 3,
-                      'word-color-four': (i + 1) % 4 == 0,
+                      'word-color-four': (i + 1) % 4 == 0
                     }"
                     v-for="(v, i) in form.personalizedWordTest4"
                     :key="i"
-                  >{{ v }}
+                    >{{ v }}
                   </span>
                 </template>
                 <span v-else>
@@ -615,7 +625,7 @@
                 </span>
               </p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </wonDialog>
@@ -646,10 +656,21 @@ export default {
       "TY0098WHI01",
       "HH0210PNK01",
       "HH0215CUS01"
-    ]; 
+    ];
 
-    let words = ["word", "HH0215STA01", "HH0215STG01", "HH0215STF01", "HH0215STH01"];
-    let isShowText = ["HH0215STA01", "HH0215STG01", "HH0215STF01", "HH0215STH01"].includes(this.type);
+    let words = [
+      "word",
+      "HH0215STA01",
+      "HH0215STG01",
+      "HH0215STF01",
+      "HH0215STH01"
+    ];
+    let isShowText = [
+      "HH0215STA01",
+      "HH0215STG01",
+      "HH0215STF01",
+      "HH0215STH01"
+    ].includes(this.type);
     this.imgSrcObj = {
       HH0215STA01: require("@/assets/img/HH0215STA01.jpg"),
       HH0215STG01: require("@/assets/img/HH0215STG01.jpg"),
@@ -669,6 +690,7 @@ export default {
       uploadTip: "",
       countrys: ["GB", "IE"],
       colors: ["Silver", "Black"],
+      previewSrc: "",
       form: {
         order: this.wowchercode,
         formSrc: "",
@@ -847,7 +869,46 @@ export default {
   },
   methods: {
     handlePreviewClick() {
-      this.testPreview = true;
+      // axios({})
+      // preview 按鈕：  /data-server/wowcher/customized/generatepreview
+      // POST
+      // 傳 texts  四段字的json
+      // orderId 傳用戶輸入的wowcher code
+      // sku   傳 verify 回來的 值, 例如 pic, picword 這些
+      let arr = [];
+      if (this.isShowText) {
+        arr.push({
+          first: this.form.personalizedWord
+        });
+        if (this.form.personalizedWordTest2) {
+          arr.push({
+            second: this.form.personalizedWordTest2
+          });
+        }
+        if (this.form.personalizedWordTest3) {
+          arr.push({
+            third: this.form.personalizedWordTest3
+          });
+        }
+        if (this.form.personalizedWordTest4) {
+          arr.push({
+            forth: this.form.personalizedWordTest4
+          });
+        }
+      }
+      this.previewSrc = "";
+      axios({
+        url: "/wowcher/customized/generatepreview",
+        method: "POST",
+        data: {
+          texts: JSON.stringify(arr),
+          orderId: this.wowchercode,
+          sku: this.type
+        }
+      }).then(res => {
+        this.testPreview = true;
+        this.previewSrc = res;
+      });
     },
     handleCountryChange() {
       this.$refs["form"].validateField("postcode");
@@ -892,25 +953,25 @@ export default {
           formData.append("phone", this.form.phone);
           formData.append("email", this.form.email);
 
-          if (!this.isShowText&&this.form.personalizedWord) {
+          if (!this.isShowText && this.form.personalizedWord) {
             formData.append("personalizedWord", this.form.personalizedWord);
           }
 
-          if (this.isShowText) {
-            let str = "{\"first\":\""+this.form.personalizedWord + "\"},";
-            if (this.form.personalizedWordTest2) {
-              str += "{\"second\":\""+ this.form.personalizedWordTest2 + "\"},";
-            }
-            if (this.form.personalizedWordTest3) {
-              str +="{\"third\":\"" + this.form.personalizedWordTest3 + "\"},";
-            }
-            if (this.form.personalizedWordTest4) {
-              str += "{\"forth\":\""+ this.form.personalizedWordTest4+"\"}";
-            }
-            formData.append("personalizedWord", "{\"value\":["+str+"}]");
-          }
+          // if (this.isShowText) {
+          //   let str = this.form.personalizedWord;
+          //   if (this.form.personalizedWordTest2) {
+          //     str += this.form.personalizedWordTest2
+          //   }
+          //   if (this.form.personalizedWordTest3) {
+          //     str += '{"third":"' + this.form.personalizedWordTest3 + '"},';
+          //   }
+          //   if (this.form.personalizedWordTest4) {
+          //     str += '{"forth":"' + this.form.personalizedWordTest4 + '"}';
+          //   }
+          //   formData.append("personalizedWord", '{"value":[' + str + "}]");
+          // }
 
-          if (!this.isShowText&&this.form.personalizedWord2) {
+          if (!this.isShowText && this.form.personalizedWord2) {
             formData.append("personalizedWord2", this.form.personalizedWord2);
           }
 
