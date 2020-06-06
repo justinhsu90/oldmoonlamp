@@ -875,25 +875,19 @@ export default {
       // 傳 texts  四段字的json
       // orderId 傳用戶輸入的wowcher code
       // sku   傳 verify 回來的 值, 例如 pic, picword 這些
-      let arr = [];
+      let obj = {};
       if (this.isShowText) {
-        arr.push({
-          first: this.form.personalizedWord
-        });
+        if (this.form.personalizedWord) {
+          obj["first"] = this.form.personalizedWord;
+        }
         if (this.form.personalizedWordTest2) {
-          arr.push({
-            second: this.form.personalizedWordTest2
-          });
+          obj["second"] = this.form.personalizedWordTest2;
         }
         if (this.form.personalizedWordTest3) {
-          arr.push({
-            third: this.form.personalizedWordTest3
-          });
+          obj["third"] = this.form.personalizedWordTest3;
         }
         if (this.form.personalizedWordTest4) {
-          arr.push({
-            forth: this.form.personalizedWordTest4
-          });
+          obj["forth"] = this.form.personalizedWordTest4;
         }
       }
       this.previewSrc = "";
@@ -901,7 +895,7 @@ export default {
         url: "/wowcher/customized/generatepreview",
         method: "POST",
         data: {
-          texts: JSON.stringify(arr),
+          texts: JSON.stringify(obj),
           orderId: this.wowchercode,
           sku: this.type
         }
