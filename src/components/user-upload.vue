@@ -444,7 +444,7 @@
     <wonDialog
       v-bind="{
         width: '565px',
-        visible: previewVisible,
+        visible: !!previewVisible,
         hideConfirmBtn: true,
         cancelText: 'Close'
       }"
@@ -472,9 +472,10 @@
     <wonDialog
       v-bind="{
         width: '565px',
-        visible: testPreview && previewSrc,
+        visible: !!testPreview,
         hideConfirmBtn: true,
-        cancelText: 'Close'
+        cancelText: 'Close',
+        class: 'dialog-custom'
       }"
       v-on="{
         cancelDialog: this.testCancelPreviewDialog,
@@ -482,14 +483,16 @@
       }"
     >
       <div slot="title">
-        <span>預覽</span>
+        <span>Preview</span>
       </div>
       <div slot="content">
-        <div class="preview-text-img">
+        <div
+          class="preview-text-img"
+          v-loading="!previewSrc"
+        >
           <img
             style="width:100%"
             :src="previewSrc"
-            alt=""
           />
           <!-- <img class="preview-img" :src="imgSrcObj[type]" /> -->
           <!-- <div
@@ -891,6 +894,7 @@ export default {
         }
       }
       this.previewSrc = "";
+      this.testPreview = true;
       axios({
         url: "/wowcher/customized/generatepreview",
         method: "POST",
@@ -900,7 +904,6 @@ export default {
           sku: this.type
         }
       }).then(res => {
-        this.testPreview = true;
         this.previewSrc = res;
       });
     },
@@ -1319,5 +1322,9 @@ export default {
   .word-color-four {
     color: #ebb7bd;
   }
+}
+
+/deep/ .dialog-custom .el-dialog {
+  border-radius: 10px !important;
 }
 </style>

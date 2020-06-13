@@ -16,7 +16,7 @@
     </transition>
     <wonDialog v-bind="{
         width: '525px',
-        visible: previewVisible,
+        visible: !!previewVisible,
         hideConfirmBtn: true,
         hideCancelBtn: true,
         showClose: false
