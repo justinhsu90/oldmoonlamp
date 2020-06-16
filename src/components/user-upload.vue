@@ -267,10 +267,7 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item
-                  label="Postcode"
-                  prop="postcode"
-                >
+                <el-form-item label="Postcode">
                   <el-input v-model="form.postcode"></el-input>
                 </el-form-item>
               </el-col>
@@ -1000,14 +997,14 @@ export default {
                 this.title = "Upload Succeed!!!!";
                 this.uploadTip =
                   "We received your order info, and you will have your product soon";
-                if (this.form.formSrc) {
-                  this.value = res.imageUrl;
-                }
+                // if (this.form.formSrc) {
+                this.value = res.imageUrl;
+                // }
                 this.$message.success("upload success");
               } else {
-                if (this.form.formSrc) {
-                  this.value = res.errorMsg;
-                }
+                // if (this.form.formSrc) {
+                this.value = res.errorMsg;
+                // }
                 this.title = "Oops!!!";
                 this.uploadTip = "";
                 this.$message.error("upload error");
