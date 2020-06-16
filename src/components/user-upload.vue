@@ -950,27 +950,32 @@ export default {
           formData.append("phone", this.form.phone);
           formData.append("email", this.form.email);
 
-          if (!this.isShowText && this.form.personalizedWord) {
-            formData.append("personalizedWord", this.form.personalizedWord);
-          }
-
-          // if (this.isShowText) {
-          //   let str = this.form.personalizedWord;
-          //   if (this.form.personalizedWordTest2) {
-          //     str += this.form.personalizedWordTest2
-          //   }
-          //   if (this.form.personalizedWordTest3) {
-          //     str += '{"third":"' + this.form.personalizedWordTest3 + '"},';
-          //   }
-          //   if (this.form.personalizedWordTest4) {
-          //     str += '{"forth":"' + this.form.personalizedWordTest4 + '"}';
-          //   }
-          //   formData.append("personalizedWord", '{"value":[' + str + "}]");
+          // if (!this.isShowText && this.form.personalizedWord) {
+          //   formData.append("personalizedWord", this.form.personalizedWord);
           // }
 
-          if (!this.isShowText && this.form.personalizedWord2) {
-            formData.append("personalizedWord2", this.form.personalizedWord2);
+          let obj = {};
+          if (this.isShowText) {
+            formData.append("sku", this.type);
           }
+          if (this.form.personalizedWord) {
+            obj["first"] = this.form.personalizedWord;
+          }
+          if (this.form.personalizedWordTest2) {
+            obj["second"] = this.form.personalizedWordTest2;
+          }
+          if (this.form.personalizedWordTest3) {
+            obj["third"] = this.form.personalizedWordTest3;
+          }
+          if (this.form.personalizedWordTest4) {
+            obj["forth"] = this.form.personalizedWordTest4;
+          }
+
+          formData.append("personalizedWord", JSON.stringify(obj));
+
+          // if (!this.isShowText && this.form.personalizedWord2) {
+          //   formData.append("personalizedWord2", this.form.personalizedWord2);
+          // }
 
           if (this.form.color) {
             formData.append("color", this.form.color);
