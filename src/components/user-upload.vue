@@ -916,7 +916,7 @@ export default {
       formData.append("orderId", this.wowchercode);
       formData.append("sku", this.type);
       if (this.type == "itsmetshirt") {
-        formData.append("color", this.form.newColor);
+        formData.append("color", this.form.color);
         if (this.form.formSrc) {
           let blob = this.toBlob(this.form.formSrc);
           formData.append("uploadfile", blob);
