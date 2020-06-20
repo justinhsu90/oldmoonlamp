@@ -297,7 +297,13 @@
                 v-if="type == 'picword' || isWord || type == 'doorbell'"
               >
                 <el-form-item
-                  :label="type == 'doorbell' ? 'House NO.' : 'Customized Word'"
+                  :label="
+                    type == 'doorbell'
+                      ? 'House NO.'
+                      : type == 'itsmetshirt'
+                      ? 'Name'
+                      : 'Customized Word'
+                  "
                   prop="personalizedWord"
                 >
                   <el-input
@@ -383,7 +389,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="type == 'doorbell'"
+                v-if="type == 'doorbell' || type == 'itsmetshirt'"
               >
                 <el-form-item
                   label="Color"
@@ -404,10 +410,10 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="type == 'picword' || isPic"
+                v-if="type == 'picword' || isPic || type == 'itsmetshirt'"
               >
                 <el-form-item
-                  label="Photo"
+                  :label="type == 'itsmetshirt' ? 'Avatar' : 'Photo'"
                   prop="formSrc"
                   ref="formItem"
                 >
@@ -419,6 +425,21 @@
                         $refs.form.validateField('formSrc')
                     "
                   ></wonImage>
+                </el-form-item>
+              </el-col>
+              <el-col
+                :span="12"
+                v-if="type == 'itsmetshirt'"
+              >
+                <el-form-item
+                  label=""
+                  prop=""
+                >
+                  <el-button
+                    @click="handlePreviewClick"
+                    type="success"
+                    plain
+                  >Preview</el-button>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -643,10 +664,10 @@ export default {
     wonDialog
   },
   data() {
-    let model = "";
-    if (this.type == "doorbell") {
-      model = "doorbell";
-    }
+    // let model = "";
+    // if (this.type == "doorbell") {
+    //   model = "doorbell";
+    // }
     let pics = [
       "pic",
       "HH0213WHI01",
@@ -663,7 +684,8 @@ export default {
       "HH0215STA01",
       "HH0215STG01",
       "HH0215STF01",
-      "HH0215STH01"
+      "HH0215STH01",
+      "itsmetshirt"
     ];
     let isShowText = [
       "HH0215STA01",
@@ -679,6 +701,8 @@ export default {
     };
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);
+    let colors =
+      this.type == "itsmetshirt" ? ["WHITE", "Black"] : ["Silver", "Black"];
     return {
       isShowText,
       testPreview: false,
@@ -689,12 +713,12 @@ export default {
       title: "Upload Succeed!!!!",
       uploadTip: "",
       countrys: ["GB", "IE"],
-      colors: ["Silver", "Black"],
+      colors,
       previewSrc: "",
       form: {
         order: this.wowchercode,
         formSrc: "",
-        model,
+        // model,
         personalizedWord: "",
         personalizedWord2: "",
         color: "",
@@ -793,10 +817,10 @@ export default {
           required: true,
           message: "required"
         },
-        model: {
-          required: true,
-          message: "required"
-        },
+        // model: {
+        //   required: true,
+        //   message: "required"
+        // },
         formSrc: {
           required: true,
           message: "required"
@@ -869,25 +893,33 @@ export default {
   },
   methods: {
     handlePreviewClick() {
-      // axios({})
       // preview 按鈕：  /data-server/wowcher/customized/generatepreview
       // POST
       // 傳 texts  四段字的json
       // orderId 傳用戶輸入的wowcher code
       // sku   傳 verify 回來的 值, 例如 pic, picword 這些
+      let formData = new FormData();
       let obj = {};
-      if (this.isShowText) {
-        if (this.form.personalizedWord) {
-          obj["first"] = this.form.personalizedWord;
-        }
-        if (this.form.personalizedWordTest2) {
-          obj["second"] = this.form.personalizedWordTest2;
-        }
-        if (this.form.personalizedWordTest3) {
-          obj["third"] = this.form.personalizedWordTest3;
-        }
-        if (this.form.personalizedWordTest4) {
-          obj["forth"] = this.form.personalizedWordTest4;
+      if (this.form.personalizedWord) {
+        obj["first"] = this.form.personalizedWord;
+      }
+      if (this.form.personalizedWordTest2) {
+        obj["second"] = this.form.personalizedWordTest2;
+      }
+      if (this.form.personalizedWordTest3) {
+        obj["third"] = this.form.personalizedWordTest3;
+      }
+      if (this.form.personalizedWordTest4) {
+        obj["forth"] = this.form.personalizedWordTest4;
+      }
+      formData.append("texts", JSON.stringify(obj));
+      formData.append("orderId", this.wowchercode);
+      formData.append("sku", this.type);
+      if (this.type == "itsmetshirt") {
+        formData.append("color", this.form.newColor);
+        if (this.form.formSrc) {
+          let blob = this.toBlob(this.form.formSrc);
+          formData.append("uploadfile", blob);
         }
       }
       this.previewSrc = "";
@@ -895,10 +927,9 @@ export default {
       axios({
         url: "/wowcher/customized/generatepreview",
         method: "POST",
-        data: {
-          texts: JSON.stringify(obj),
-          orderId: this.wowchercode,
-          sku: this.type
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data"
         }
       }).then(res => {
         this.previewSrc = res;
@@ -936,7 +967,7 @@ export default {
           });
           let formData = new FormData();
           formData.append("orderId", this.form.order);
-          formData.append("model", this.form.model);
+          // formData.append("model", this.form.model);
           formData.append("customerName", this.form.customerName);
           formData.append("address1", this.form.address1);
           formData.append("address2", this.form.address2);
@@ -981,6 +1012,10 @@ export default {
           if (this.form.formSrc) {
             let blob = this.toBlob(this.form.formSrc);
             formData.append("uploadfile", blob);
+          }
+
+          if (this.type == "itsmetshirt") {
+            formData.append("sku", "itsmetshirt");
           }
 
           axios({
