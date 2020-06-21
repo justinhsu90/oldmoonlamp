@@ -432,6 +432,27 @@
                 v-if="type == 'itsmetshirt'"
               >
                 <el-form-item
+                  label="Size"
+                  prop="size"
+                >
+                  <el-select
+                    v-model="form.size"
+                    placeholder="Choose"
+                  >
+                    <el-option
+                      v-for="(v, i) in sizes"
+                      :key="i"
+                      :label="v"
+                      :value="v"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col
+                :span="12"
+                v-if="type == 'itsmetshirt'"
+              >
+                <el-form-item
                   label=""
                   prop=""
                 >
@@ -714,11 +735,13 @@ export default {
       uploadTip: "",
       countrys: ["GB", "IE"],
       colors,
+      sizes: [],
       previewSrc: "",
       form: {
         order: this.wowchercode,
         formSrc: "",
         // model,
+        size: "",
         personalizedWord: "",
         personalizedWord2: "",
         color: "",
@@ -858,6 +881,10 @@ export default {
         //   required: true,
         //   message: "required"
         // },
+        size: {
+          required: true,
+          message: "required"
+        },
         color: {
           required: true,
           message: "required"
@@ -890,6 +917,17 @@ export default {
     }).then(res => {
       this.selectPhones = res;
     });
+    if (this.type == "itsmetshirt") {
+      axios({
+        url: "/wowcher/customized/value/size",
+        method: "POST",
+        params: {
+          sku: this.type
+        }
+      }).then(res => {
+        this.sizes = res;
+      });
+    }
   },
   methods: {
     handlePreviewClick() {
@@ -1016,6 +1054,10 @@ export default {
 
           if (this.type == "itsmetshirt") {
             formData.append("sku", "itsmetshirt");
+          }
+
+          if (this.form.size) {
+            formData.append("size", this.form.size);
           }
 
           axios({
