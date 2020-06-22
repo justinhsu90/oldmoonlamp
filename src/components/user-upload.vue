@@ -389,7 +389,7 @@
               </el-col>
               <el-col
                 :span="12"
-                v-if="type == 'doorbell' || type == 'itsmetshirt'"
+                v-if="type == 'doorbell'"
               >
                 <el-form-item
                   label="Color"
@@ -410,6 +410,21 @@
               </el-col>
               <el-col
                 :span="12"
+                v-if="type == 'itsmetshirt'"
+              >
+                <el-form-item
+                  label=""
+                  prop=""
+                >
+                  <el-button
+                    @click="handlePreviewClick"
+                    type="success"
+                    plain
+                  >Preview</el-button>
+                </el-form-item>
+              </el-col>
+              <el-col
+                :span="12"
                 v-if="type == 'picword' || isPic || type == 'itsmetshirt'"
               >
                 <el-form-item
@@ -425,42 +440,6 @@
                         $refs.form.validateField('formSrc')
                     "
                   ></wonImage>
-                </el-form-item>
-              </el-col>
-              <el-col
-                :span="12"
-                v-if="type == 'itsmetshirt'"
-              >
-                <el-form-item
-                  label="Size"
-                  prop="size"
-                >
-                  <el-select
-                    v-model="form.size"
-                    placeholder="Choose"
-                  >
-                    <el-option
-                      v-for="(v, i) in sizes"
-                      :key="i"
-                      :label="v"
-                      :value="v"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col
-                :span="12"
-                v-if="type == 'itsmetshirt'"
-              >
-                <el-form-item
-                  label=""
-                  prop=""
-                >
-                  <el-button
-                    @click="handlePreviewClick"
-                    type="success"
-                    plain
-                  >Preview</el-button>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -722,8 +701,8 @@ export default {
     };
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);
-    let colors =
-      this.type == "itsmetshirt" ? ["WHITE", "Black"] : ["Silver", "Black"];
+    // let colors =
+    //   this.type == "itsmetshirt" ? ["WHITE", "Black"] : ["Silver", "Black"];
     return {
       isShowText,
       testPreview: false,
@@ -734,8 +713,8 @@ export default {
       title: "Upload Succeed!!!!",
       uploadTip: "",
       countrys: ["GB", "IE"],
-      colors,
-      sizes: [],
+      colors: ["Silver", "Black"],
+      // sizes: [],
       previewSrc: "",
       form: {
         order: this.wowchercode,
@@ -917,17 +896,17 @@ export default {
     }).then(res => {
       this.selectPhones = res;
     });
-    if (this.type == "itsmetshirt") {
-      axios({
-        url: "/wowcher/customized/value/size",
-        method: "POST",
-        params: {
-          sku: this.type
-        }
-      }).then(res => {
-        this.sizes = res;
-      });
-    }
+    // if (this.type == "itsmetshirt") {
+    //   axios({
+    //     url: "/wowcher/customized/value/size",
+    //     method: "POST",
+    //     params: {
+    //       sku: this.type
+    //     }
+    //   }).then(res => {
+    //     this.sizes = res;
+    //   });
+    // }
   },
   methods: {
     handlePreviewClick() {
@@ -954,7 +933,7 @@ export default {
       formData.append("orderId", this.wowchercode);
       formData.append("sku", this.type);
       if (this.type == "itsmetshirt") {
-        formData.append("color", this.form.color);
+        // formData.append("color", this.form.color);
         if (this.form.formSrc) {
           let blob = this.toBlob(this.form.formSrc);
           formData.append("uploadfile", blob);
@@ -1056,9 +1035,9 @@ export default {
             formData.append("sku", "itsmetshirt");
           }
 
-          if (this.form.size) {
-            formData.append("size", this.form.size);
-          }
+          // if (this.form.size) {
+          //   formData.append("size", this.form.size);
+          // }
 
           axios({
             url: "wowcher/customized/add",
