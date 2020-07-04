@@ -1006,8 +1006,9 @@ export default {
           if (this.form.personalizedWord) {
             obj["first"] = this.form.personalizedWord;
           }
-          if (this.form.personalizedWordTest2) {
-            obj["second"] = this.form.personalizedWordTest2;
+          if (this.form.personalizedWordTest2 || this.form.personalizedWord2) {
+            obj["second"] =
+              this.form.personalizedWordTest2 || this.form.personalizedWord2;
           }
           if (this.form.personalizedWordTest3) {
             obj["third"] = this.form.personalizedWordTest3;
