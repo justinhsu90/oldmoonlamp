@@ -681,6 +681,7 @@ export default {
 
     let words = [
       "word",
+      "AC0149",
       "HH0215STA01",
       "HH0215STG01",
       "HH0215STF01",
@@ -688,6 +689,7 @@ export default {
       "itsmetshirt"
     ];
     let isShowText = [
+      "AC0149",
       "HH0215STA01",
       "HH0215STG01",
       "HH0215STF01",
