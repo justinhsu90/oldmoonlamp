@@ -267,7 +267,10 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Postcode">
+                <el-form-item
+                  label="Postcode"
+                  prop="postcode"
+                >
                   <el-input v-model="form.postcode"></el-input>
                 </el-form-item>
               </el-col>
