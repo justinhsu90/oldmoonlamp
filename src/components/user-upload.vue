@@ -269,7 +269,7 @@
               <el-col :span="12">
                 <el-form-item
                   label="Postcode"
-                  prop="postcode"
+                  :prop="form.country == 'IE' ? '' : 'postcode'"
                 >
                   <el-input v-model="form.postcode"></el-input>
                 </el-form-item>
@@ -958,7 +958,8 @@ export default {
       });
     },
     handleCountryChange() {
-      this.$refs["form"].validateField("postcode");
+      // this.$refs["form"].validateField("postcode");
+      this.$refs["form"].clearValidate("postcode");
     },
     testCancelPreviewDialog() {
       this.testPreview = false;
