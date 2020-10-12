@@ -267,7 +267,10 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Postcode">
+                <el-form-item
+                  label="Postcode"
+                  :prop="form.country == 'IE' ? '' : 'postcode'"
+                >
                   <el-input v-model="form.postcode"></el-input>
                 </el-form-item>
               </el-col>
@@ -368,6 +371,7 @@
                   prop=""
                 >
                   <el-button
+                    v-if="!hideHavePreview"
                     @click="handlePreviewClick"
                     type="success"
                     plain
@@ -657,6 +661,7 @@
 import wonImage from "won/won-image";
 import axios from "../core/axios";
 import wonDialog from "won/won-dialog";
+import Photo from "@/assets/img/photo.png";
 export default {
   props: ["type", "wowchercode"],
   components: {
@@ -681,6 +686,7 @@ export default {
 
     let words = [
       "word",
+      "AC0149",
       "HH0215STA01",
       "HH0215STG01",
       "HH0215STF01",
@@ -688,6 +694,7 @@ export default {
       "itsmetshirt"
     ];
     let isShowText = [
+      "AC0149",
       "HH0215STA01",
       "HH0215STG01",
       "HH0215STF01",
@@ -701,9 +708,11 @@ export default {
     };
     let isPic = pics.includes(this.type);
     let isWord = words.includes(this.type);
+    let hideHavePreview = ["AC0149"].includes(this.type);
     // let colors =
     //   this.type == "itsmetshirt" ? ["WHITE", "Black"] : ["Silver", "Black"];
     return {
+      hideHavePreview,
       isShowText,
       testPreview: false,
       isPic,
@@ -954,7 +963,8 @@ export default {
       });
     },
     handleCountryChange() {
-      this.$refs["form"].validateField("postcode");
+      // this.$refs["form"].validateField("postcode");
+      this.$refs["form"].clearValidate("postcode");
     },
     testCancelPreviewDialog() {
       this.testPreview = false;
@@ -1056,12 +1066,12 @@ export default {
                 this.uploadTip =
                   "We received your order info, and you will have your product soon";
                 // if (this.form.formSrc) {
-                this.value = res.imageUrl;
+                this.value = res.imageUrl || Photo;
                 // }
                 this.$message.success("upload success");
               } else {
                 // if (this.form.formSrc) {
-                this.value = res.errorMsg;
+                this.value = res.errorMsg || Photo;
                 // }
                 this.title = "Oops!!!";
                 this.uploadTip = "";
