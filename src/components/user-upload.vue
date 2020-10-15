@@ -1059,18 +1059,27 @@ export default {
             }
           })
             .then(res => {
-              this.previewVisible = true;
               if (res.success) {
                 this.title = "Upload Succeed!!!!";
                 this.uploadTip =
                   "We received your order info, and you will have your product soon";
                 // if (this.form.formSrc) {
-                this.value = res.imageUrl || Photo;
-                // }
+                if (
+                  res.imageUrl.indexOf("http://") != -1 ||
+                  res.imageUrl.indexOf("https://") != -1
+                ) {
+                  this.previewVisible = true;
+                  this.value = res.imageUrl;
+                } else {
+                  this.value = Photo;
+                }
+
                 this.$message.success("upload success");
+
+                // }
               } else {
                 // if (this.form.formSrc) {
-                this.value = res.errorMsg || Photo;
+                // this.value = res.errorMsg || Photo;
                 // }
                 this.title = "Oops!!!";
                 this.uploadTip = "";
