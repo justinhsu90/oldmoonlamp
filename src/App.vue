@@ -19,34 +19,37 @@
         visible: !!previewVisible,
         hideConfirmBtn: true,
         hideCancelBtn: true,
-        showClose: false
+        showClose: false,
+        top: '270px'
       }">
       <div slot="title"></div>
       <div slot="content">
-        <el-form
-          @submit.native.prevent
-          @keyup.native.enter="handleSubmit"
-          ref="form"
-          :model="form"
-          label-width="120px"
-          label-position="left"
-          :rules="formRules"
-        >
-          <el-form-item
-            label="Voucher Code"
-            prop="order"
+        <div class="form-container">
+          <el-form
+            @submit.native.prevent
+            @keyup.native.enter="handleSubmit"
+            ref="form"
+            :model="form"
+            label-width="120px"
+            label-position="left"
+            :rules="formRules"
           >
-            <el-input v-model="form.order"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button
-              @click="handleSubmit"
-              :loading="btnloading"
-              type="primary"
-              size="small"
-            >Submit</el-button>
-          </el-form-item>
-        </el-form>
+            <el-form-item
+              label="Voucher Code"
+              prop="order"
+            >
+              <el-input v-model="form.order"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button
+                @click="handleSubmit"
+                :loading="btnloading"
+                type="primary"
+                size="small"
+              >Submit</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
       </div>
     </wonDialog>
   </div>
@@ -142,7 +145,10 @@ body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
-
+// .form-container {
+//   position: relative;
+//   top: 100px;
+// }
 header {
   margin: 0 auto;
   padding-bottom: 5px;
