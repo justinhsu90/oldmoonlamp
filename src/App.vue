@@ -107,19 +107,20 @@ export default {
       },
       formRules: Object.freeze({
         order: {
-          required: true,
-          validator: (rule, value, callback) => {
-            let rules = /[0-9a-zA-z]{6}-[0-9a-zA-z]{6}$/;
-            if (!rules.test(value)) {
-              callback(
-                new Error(
-                  "Please enter Voucher Code in format as shown in guide。"
-                )
-              );
-            } else {
-              callback();
-            }
-          }
+          required: true
+          // ,
+          // validator: (rule, value, callback) => {
+          //   let rules = /[0-9a-zA-z]{6}-[0-9a-zA-z]{6}$/;
+          //   if (!rules.test(value)) {
+          //     callback(
+          //       new Error(
+          //         "Please enter Voucher Code in format as shown in guide。"
+          //       )
+          //     );
+          //   } else {
+          //     callback();
+          //   }
+          // }
         }
       }),
       btnloading: false,
