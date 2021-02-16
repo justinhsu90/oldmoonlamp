@@ -138,18 +138,24 @@ export default {
           height: "105px"
         };
         break;
-     case "HH0215STA01":
+      case "HH0215STA01":
         specailStyle = {
           width: "150px",
           height: "150px"
         };
-        break; 
-    case "HH0215CUS01":
+        break;
+      case "HH0215CUS01":
         specailStyle = {
           width: "150px",
           height: "100px"
         };
-        break;       
+        break;
+      case "HI0232":
+        specailStyle = {
+          width: "155px",
+          height: "130px"
+        };
+        break;
     }
     return {
       visible: false,
@@ -187,7 +193,7 @@ export default {
       //   this.specailStyle = {
       //     width: "150px",
       //     height: "150px"
-      //   }; 
+      //   };
       // } else {
       //   this.specailStyle = {
       //     width: "150px",
