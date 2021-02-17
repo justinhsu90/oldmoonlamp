@@ -14,19 +14,10 @@
             label-width="152px"
             :rules="formRules"
           >
-            <el-row
-              :gutter="20"
-              class="content-one"
-            >
+            <el-row :gutter="20" class="content-one">
               <el-col :span="24">
-                <el-form-item
-                  label="Voucher Code"
-                  prop="order"
-                >
-                  <el-input
-                    disabled
-                    v-model="form.order"
-                  ></el-input>
+                <el-form-item label="Voucher Code" prop="order">
+                  <el-input disabled v-model="form.order"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -35,10 +26,7 @@
                 Recipient Info
               </el-col>
               <el-col :span="12">
-                <el-form-item
-                  label="Customer Name"
-                  prop="customerName"
-                >
+                <el-form-item label="Customer Name" prop="customerName">
                   <el-input v-model="form.customerName"></el-input>
                 </el-form-item>
               </el-col>
@@ -59,26 +47,17 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item
-                  label="City"
-                  prop="city"
-                >
+                <el-form-item label="City" prop="city">
                   <el-input v-model="form.city"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item
-                  label="County"
-                  prop="county"
-                >
+                <el-form-item label="County" prop="county">
                   <el-input v-model="form.county"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item
-                  label="Country"
-                  prop="country"
-                >
+                <el-form-item label="Country" prop="country">
                   <el-select
                     @change="handleCountryChange"
                     v-model="form.country"
@@ -102,18 +81,12 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item
-                  label="Phone"
-                  prop="phone"
-                >
+                <el-form-item label="Phone" prop="phone">
                   <el-input v-model="form.phone"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item
-                  label="Email"
-                  prop="email"
-                >
+                <el-form-item label="Email" prop="email">
                   <el-input v-model="form.email"></el-input>
                 </el-form-item>
               </el-col>
@@ -142,10 +115,7 @@
                   ></el-input>
                 </el-form-item>
               </el-col>
-              <el-col
-                :span="12"
-                v-if="isShowText"
-              >
+              <el-col :span="12" v-if="isShowText">
                 <el-form-item
                   label="Customized Word2"
                   prop="personalizedWordTest2"
@@ -175,10 +145,7 @@
                   ></el-input>
                 </el-form-item>
               </el-col>
-              <el-col
-                :span="12"
-                v-if="isShowText && type == 'HH0215STG01'"
-              >
+              <el-col :span="12" v-if="isShowText && type == 'HH0215STG01'">
                 <el-form-item
                   label="Customized Word4"
                   prop="personalizedWordTest4"
@@ -189,26 +156,18 @@
                   ></el-input>
                 </el-form-item>
               </el-col>
-              <el-col
-                :span="12"
-                v-if="isShowText"
-              >
-                <el-form-item
-                  label=""
-                  prop=""
-                >
+              <el-col :span="12" v-if="isShowText">
+                <el-form-item label="" prop="">
                   <el-button
                     v-if="!hideHavePreview"
                     @click="handlePreviewClick"
                     type="success"
                     plain
-                  >Preview</el-button>
+                    >Preview</el-button
+                  >
                 </el-form-item>
               </el-col>
-              <el-col
-                :span="12"
-                v-if="type == 'doorbell'"
-              >
+              <el-col :span="12" v-if="type == 'doorbell'">
                 <el-form-item
                   :label="
                     type == 'doorbell' ? 'Street Name' : 'Customized Word2'
@@ -218,18 +177,9 @@
                   <el-input v-model="form.personalizedWord2"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col
-                :span="12"
-                v-if="type == 'doorbell'"
-              >
-                <el-form-item
-                  label="Color"
-                  prop="color"
-                >
-                  <el-select
-                    v-model="form.color"
-                    placeholder="Choose"
-                  >
+              <el-col :span="12" v-if="type == 'doorbell'">
+                <el-form-item label="Color" prop="color">
+                  <el-select v-model="form.color" placeholder="Choose">
                     <el-option
                       v-for="(v, i) in colors"
                       :key="i"
@@ -239,19 +189,11 @@
                   </el-select>
                 </el-form-item>
               </el-col>
-              <el-col
-                :span="12"
-                v-if="type == 'itsmetshirt'"
-              >
-                <el-form-item
-                  label=""
-                  prop=""
-                >
-                  <el-button
-                    @click="handlePreviewClick"
-                    type="success"
-                    plain
-                  >Preview</el-button>
+              <el-col :span="12" v-if="type == 'itsmetshirt'">
+                <el-form-item label="" prop="">
+                  <el-button @click="handlePreviewClick" type="success" plain
+                    >Preview</el-button
+                  >
                 </el-form-item>
               </el-col>
               <el-col
@@ -278,10 +220,7 @@
               <el-col>
                 <el-form-item class="form-margin">
                   <div class="footer-submit">
-                    <div
-                      class="some-tip"
-                      @click="handleCallPopInfo"
-                    >
+                    <div class="some-tip" @click="handleCallPopInfo">
                       Something you need to know
                     </div>
                     <el-button
@@ -289,7 +228,8 @@
                       class="btn-right"
                       type="primary"
                       size="small"
-                    >Submit</el-button>
+                      >Submit</el-button
+                    >
                   </div>
                 </el-form-item>
               </el-col>
@@ -315,15 +255,8 @@
         <span class="tip">{{ uploadTip }}</span>
       </div>
       <div slot="content">
-        <img
-          class="preview-img"
-          :src="value"
-          v-if="value"
-        />
-        <span
-          class="preview-error"
-          v-else
-        >{{ value }}</span>
+        <img class="preview-img" :src="value" v-if="value" />
+        <span class="preview-error" v-else>{{ value }}</span>
       </div>
     </wonDialog>
     <wonDialog
@@ -343,14 +276,8 @@
         <span>Preview</span>
       </div>
       <div slot="content">
-        <div
-          class="preview-text-img"
-          v-loading="!previewSrc"
-        >
-          <img
-            style="width:100%"
-            :src="previewSrc"
-          />
+        <div class="preview-text-img" v-loading="!previewSrc">
+          <img style="width:100%" :src="previewSrc" />
         </div>
       </div>
     </wonDialog>
@@ -575,6 +502,9 @@ export default {
     }).then(res => {
       this.selectPhones = res;
     });
+  },
+  mounted() {
+    this.handleCallPopInfo();
   },
   methods: {
     handleCallPopInfo() {
