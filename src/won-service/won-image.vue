@@ -150,7 +150,8 @@ export default {
           height: "100px"
         };
         break;
-      case "HI0232":
+      case "HI0232CIR01":
+      case "HI0232WHI01":
         specailStyle = {
           width: "155px",
           height: "130px"

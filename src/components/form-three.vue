@@ -3,7 +3,6 @@
     <div class="success-container">
       <h1 class="success__tt-one">Completed!!</h1>
       <div>
-        <h3 class="success__tt-two">Please enter YOUR OWN code as below</h3>
         <div>
           <img
             class="success__tip-img"
@@ -15,7 +14,7 @@
           Thanks for your order.
         </div>
         <div class="success__tip-title">
-          We received your personalized insuccessation.
+          We received your customised order information.
         </div>
         <div class="success__tip-title">
           The order is in progress now and will be dispatched out in a few days.
