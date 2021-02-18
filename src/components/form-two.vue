@@ -299,7 +299,8 @@ export default {
   data() {
     let pics = [
       "pic",
-      "HI0232",
+      "HI0232CIR01",
+      "HI0232WHI01",
       "HH0213WHI01",
       "HH0214BLK01",
       "HH0214BLL01",
