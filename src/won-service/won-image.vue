@@ -151,6 +151,11 @@ export default {
         };
         break;
       case "HI0232CIR01":
+          specailStyle = {
+          width: "155px",
+          height: "130px"
+        };
+        break;
       case "HI0232WHI01":
         specailStyle = {
           width: "155px",
