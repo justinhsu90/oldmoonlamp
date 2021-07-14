@@ -14,10 +14,19 @@
             label-width="152px"
             :rules="formRules"
           >
-            <el-row :gutter="20" class="content-one">
+            <el-row
+              :gutter="20"
+              class="content-one"
+            >
               <el-col :span="24">
-                <el-form-item label="Voucher Code" prop="order">
-                  <el-input disabled v-model="form.order"></el-input>
+                <el-form-item
+                  label="Voucher Code"
+                  prop="order"
+                >
+                  <el-input
+                    disabled
+                    v-model="form.order"
+                  ></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -26,7 +35,10 @@
                 Recipient Info
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Customer Name" prop="customerName">
+                <el-form-item
+                  label="Customer Name"
+                  prop="customerName"
+                >
                   <el-input v-model="form.customerName"></el-input>
                 </el-form-item>
               </el-col>
@@ -47,17 +59,26 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="City" prop="city">
+                <el-form-item
+                  label="City"
+                  prop="city"
+                >
                   <el-input v-model="form.city"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="County" prop="county">
+                <el-form-item
+                  label="County"
+                  prop="county"
+                >
                   <el-input v-model="form.county"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Country" prop="country">
+                <el-form-item
+                  label="Country"
+                  prop="country"
+                >
                   <el-select
                     @change="handleCountryChange"
                     v-model="form.country"
@@ -81,12 +102,18 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Phone" prop="phone">
+                <el-form-item
+                  label="Phone"
+                  prop="phone"
+                >
                   <el-input v-model="form.phone"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="Email" prop="email">
+                <el-form-item
+                  label="Email"
+                  prop="email"
+                >
                   <el-input v-model="form.email"></el-input>
                 </el-form-item>
               </el-col>
@@ -95,6 +122,89 @@
               <el-col class="personalized-content">
                 Personalized Content
               </el-col>
+              <div v-if="isPintuText">
+                <el-col :span="12">
+                  <el-col :span="24">
+                    <el-form-item
+                      label="Your name"
+                      prop="personalizedWord"
+                    >
+                      <el-input
+                        :maxlength="20"
+                        v-model="form.personalizedWord"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="24">
+                    <el-form-item
+                      label="your location"
+                      prop="personalizedWordTest2"
+                    >
+                      <el-input
+                        :maxlength="20"
+                        v-model="form.personalizedWordTest2"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="24">
+                    <el-form-item
+                      label="How many likes?"
+                      prop="personalizedWordTest3"
+                    >
+                      <el-input
+                        :maxlength="20"
+                        v-model="form.personalizedWordTest3"
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="24">
+                    <el-form-item
+                      label="Post"
+                      prop="personalizedWordTest4"
+                    >
+                      <el-input v-model="form.personalizedWordTest4"></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item
+                      label="Upload"
+                      prop="formSrc"
+                    >
+                      <wonImage
+                        :picType="type"
+                        :value="form.formSrc"
+                        @input="
+                          (form.formSrc = $event),
+                            $refs.form.validateField('formSrc')
+                        "
+                      ></wonImage>
+                    </el-form-item>
+                  </el-col>
+                </el-col>
+                <el-col :span="12">
+                  <div class="img-container">
+                    <div>预览</div>
+                    <div class="img-content">
+                      <div
+                        class="img-background"
+                        :style="{
+                          backgroundImage: `url(${form.formSrc})`
+                        }"
+                      ></div>
+                      <span class="img-textOne">{{ form.personalizedWord }}</span>
+                      <span class="img-textTwo">{{
+                        form.personalizedWordTest2
+                      }}</span>
+                      <span class="img-textThree">{{
+                        form.personalizedWordTest3
+                      }}</span>
+                      <span class="img-textFour">{{
+                        form.personalizedWordTest4
+                      }}</span>
+                    </div>
+                  </div>
+                </el-col>
+              </div>
               <el-col
                 :span="12"
                 v-if="type == 'picword' || isWord || type == 'doorbell'"
@@ -115,7 +225,10 @@
                   ></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="isShowText">
+              <el-col
+                :span="12"
+                v-if="isShowText"
+              >
                 <el-form-item
                   label="Customized Word2"
                   prop="personalizedWordTest2"
@@ -145,7 +258,10 @@
                   ></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="isShowText && type == 'HH0215STG01'">
+              <el-col
+                :span="12"
+                v-if="isShowText && type == 'HH0215STG01'"
+              >
                 <el-form-item
                   label="Customized Word4"
                   prop="personalizedWordTest4"
@@ -156,18 +272,26 @@
                   ></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="isShowText">
-                <el-form-item label="" prop="">
+              <el-col
+                :span="12"
+                v-if="isShowText"
+              >
+                <el-form-item
+                  label=""
+                  prop=""
+                >
                   <el-button
                     v-if="!hideHavePreview"
                     @click="handlePreviewClick"
                     type="success"
                     plain
-                    >Preview</el-button
-                  >
+                  >Preview</el-button>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type == 'doorbell'">
+              <el-col
+                :span="12"
+                v-if="type == 'doorbell'"
+              >
                 <el-form-item
                   :label="
                     type == 'doorbell' ? 'Street Name' : 'Customized Word2'
@@ -177,9 +301,18 @@
                   <el-input v-model="form.personalizedWord2"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type == 'doorbell'">
-                <el-form-item label="Color" prop="color">
-                  <el-select v-model="form.color" placeholder="Choose">
+              <el-col
+                :span="12"
+                v-if="type == 'doorbell'"
+              >
+                <el-form-item
+                  label="Color"
+                  prop="color"
+                >
+                  <el-select
+                    v-model="form.color"
+                    placeholder="Choose"
+                  >
                     <el-option
                       v-for="(v, i) in colors"
                       :key="i"
@@ -189,11 +322,19 @@
                   </el-select>
                 </el-form-item>
               </el-col>
-              <el-col :span="12" v-if="type == 'itsmetshirt'">
-                <el-form-item label="" prop="">
-                  <el-button @click="handlePreviewClick" type="success" plain
-                    >Preview</el-button
-                  >
+              <el-col
+                :span="12"
+                v-if="type == 'itsmetshirt'"
+              >
+                <el-form-item
+                  label=""
+                  prop=""
+                >
+                  <el-button
+                    @click="handlePreviewClick"
+                    type="success"
+                    plain
+                  >Preview</el-button>
                 </el-form-item>
               </el-col>
               <el-col
@@ -220,7 +361,10 @@
               <el-col>
                 <el-form-item class="form-margin">
                   <div class="footer-submit">
-                    <div class="some-tip" @click="handleCallPopInfo">
+                    <div
+                      class="some-tip"
+                      @click="handleCallPopInfo"
+                    >
                       Something you need to know
                     </div>
                     <el-button
@@ -228,8 +372,7 @@
                       class="btn-right"
                       type="primary"
                       size="small"
-                      >Submit</el-button
-                    >
+                    >Submit</el-button>
                   </div>
                 </el-form-item>
               </el-col>
@@ -255,8 +398,15 @@
         <span class="tip">{{ uploadTip }}</span>
       </div>
       <div slot="content">
-        <img class="preview-img" :src="value" v-if="value" />
-        <span class="preview-error" v-else>{{ value }}</span>
+        <img
+          class="preview-img"
+          :src="value"
+          v-if="value"
+        />
+        <span
+          class="preview-error"
+          v-else
+        >{{ value }}</span>
       </div>
     </wonDialog>
     <wonDialog
@@ -276,8 +426,14 @@
         <span>Preview</span>
       </div>
       <div slot="content">
-        <div class="preview-text-img" v-loading="!previewSrc">
-          <img style="width:100%" :src="previewSrc" />
+        <div
+          class="preview-text-img"
+          v-loading="!previewSrc"
+        >
+          <img
+            style="width:100%"
+            :src="previewSrc"
+          />
         </div>
       </div>
     </wonDialog>
@@ -336,6 +492,7 @@ export default {
     let isWord = words.includes(this.type);
     let hideHavePreview = ["AC0149"].includes(this.type);
     return {
+      isPintuText: this.type == "HH0424YEL01",
       hideHavePreview,
       isShowText,
       testPreview: false,
@@ -370,6 +527,18 @@ export default {
       },
       selectPhones: [],
       formRules: {
+        personalizedWordTest2: {
+          required: this.type == "HH0424YEL01",
+          message: "required"
+        },
+        personalizedWordTest3: {
+          required: this.type == "HH0424YEL01",
+          message: "required"
+        },
+        personalizedWordTest4: {
+          required: this.type == "HH0424YEL01",
+          message: "required"
+        },
         customerName: {
           required: true,
           message: "required"
@@ -1020,5 +1189,77 @@ export default {
 
 /deep/ .dialog-custom .el-dialog {
   border-radius: 10px !important;
+}
+
+.img-container {
+  padding: 20px;
+  .img-content {
+    background: white;
+    padding-top: 50px;
+    padding-bottom: 60px;
+    border-radius: 10px;
+    margin-top: 5px;
+    width: 300px;
+    position: relative;
+  }
+  .img-background {
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .img-textOne {
+    position: absolute;
+    top: 12px;
+    font-family: "Neue Helvetica";
+    left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+  }
+
+  .img-textTwo {
+    position: absolute;
+    top: 33px;
+    left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-family: "Neue Helvetica";
+  }
+  .img-textThree {
+    position: absolute;
+    bottom: 40px;
+    left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Neue Helvetica";
+  }
+
+  .img-textFour {
+    position: absolute;
+    top: 368px;
+    left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-family: "Neue Helvetica";
+    width: 100%;
+    word-break: break-all;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 }
 </style>
