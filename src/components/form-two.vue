@@ -162,7 +162,11 @@
                       label="Post"
                       prop="personalizedWordTest4"
                     >
-                      <el-input v-model="form.personalizedWordTest4"></el-input>
+                      <el-input
+                        type="textarea"
+                        :maxlength="80"
+                        v-model="form.personalizedWordTest4"
+                      ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
@@ -857,7 +861,7 @@ export default {
           if (this.form.personalizedWordTest4) {
             obj["forth"] = this.form.personalizedWordTest4;
           }
-
+          debugger
           formData.append("personalizedWord", JSON.stringify(obj));
 
           if (this.form.color) {
@@ -1240,9 +1244,9 @@ export default {
   padding-top: 0px;
   .img-content {
     background: white;
-    padding-top: 65px;
+    padding-top: 70px;
     // padding-bottom: 60px;
-    min-height: 430px;
+    min-height: 460px;
     border-radius: 10px;
     margin-top: 5px;
     width: 300px;
@@ -1270,13 +1274,13 @@ export default {
   .img-text-icon {
     position: absolute;
     right: 20px;
-    width: 30px;
-    height: 40px;
+    width: 6px;
+    // height: 40px;
     top: 20px;
   }
   .img-textTwo {
     position: absolute;
-    top: 44px;
+    top: 46px;
     left: 0px;
     padding-left: 15px;
     padding-right: 15px;
@@ -1285,50 +1289,53 @@ export default {
     font-family: "Neue Helvetica";
     display: flex;
     align-items: center;
+    font-weight: bold;
   }
 
   .img-textTwo-icon {
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    // height: 12px;
+    margin-right: 3px;
   }
   .img-textThree-icon {
     position: absolute;
-    top: 370px;
+    top: 378px;
     left: 10px;
-    width: 30px;
-    height: 30px;
+    width: 27px;
+    // height: 30px;
   }
 
   .img-textFour-icon {
     position: absolute;
-    top: 370px;
-    left: 40px;
-    width: 30px;
-    height: 30px;
+    top: 378px;
+    left: 50px;
+    width: 22px;
+    // height: 30px;
   }
 
   .img-textFive-icon {
     position: absolute;
-    top: 370px;
-    left: 70px;
-    width: 30px;
-    height: 30px;
+    top: 380px;
+    left: 84px;
+    width: 27px;
+    // height: 30px;
   }
 
   .img-textSix-icon {
     position: absolute;
-    top: 370px;
+    top: 378px;
     left: 250px;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    // height: 30px;
   }
   .img-textSeven-icon {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    // height: 15px;
+    margin-right: 8px;
   }
   .img-textThree {
     position: absolute;
-    top: 400px;
+    top: 412px;
     left: 5px;
     padding-left: 10px;
     padding-right: 10px;
@@ -1338,16 +1345,18 @@ export default {
     font-family: "Neue Helvetica";
     display: flex;
     align-items: center;
+    font-weight: bold;
   }
 
   .img-textFour {
     position: absolute;
-    top: 420px;
+    top: 435px;
     left: 0px;
     padding-left: 15px;
     padding-right: 10px;
     box-sizing: border-box;
-    font-weight: bold;
+    // font-weight: bold;
+    font-size: 18px;
     font-family: "Neue Helvetica";
     width: 100%;
     word-break: break-all;
