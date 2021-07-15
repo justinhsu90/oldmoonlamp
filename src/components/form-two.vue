@@ -846,7 +846,7 @@ export default {
           formData.append("phone", this.form.phone);
           formData.append("email", this.form.email);
           let obj = {};
-          if (this.isShowText) {
+          if (this.isShowText || this.isPintuText) {
             formData.append("sku", this.type);
           }
           if (this.form.personalizedWord) {
