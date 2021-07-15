@@ -192,12 +192,55 @@
                         }"
                       ></div>
                       <span class="img-textOne">{{ form.personalizedWord }}</span>
-                      <span class="img-textTwo">{{
+                      <img
+                        src="@/assets/img/try.png"
+                        alt=""
+                        class="img-text-icon"
+                      >
+                      <div class="img-textTwo">
+                        <img
+                          src="@/assets/img/try.png"
+                          alt=""
+                          class="img-textTwo-icon"
+                        >
+                        <span>
+                          {{
                         form.personalizedWordTest2
-                      }}</span>
-                      <span class="img-textThree">{{
-                        form.personalizedWordTest3
-                      }}</span>
+                      }}
+                        </span>
+                      </div>
+                      <img
+                        src="@/assets/img/try.png"
+                        alt=""
+                        class="img-textThree-icon"
+                      >
+                      <img
+                        src="@/assets/img/try.png"
+                        alt=""
+                        class="img-textFour-icon"
+                      >
+                      <img
+                        src="@/assets/img/try.png"
+                        alt=""
+                        class="img-textFive-icon"
+                      >
+                      <img
+                        src="@/assets/img/try.png"
+                        alt=""
+                        class="img-textSix-icon"
+                      >
+                      <div class="img-textThree">
+                        <img
+                          src="@/assets/img/try.png"
+                          alt=""
+                          class="img-textSeven-icon"
+                        >
+                        <span>
+                          {{
+                          form.personalizedWordTest3
+                        }}
+                        </span>
+                      </div>
                       <span class="img-textFour">{{
                         form.personalizedWordTest4
                       }}</span>
@@ -1193,10 +1236,13 @@ export default {
 
 .img-container {
   padding: 20px;
+  padding-left: 40px;
+  padding-top: 0px;
   .img-content {
     background: white;
-    padding-top: 50px;
-    padding-bottom: 60px;
+    padding-top: 65px;
+    // padding-bottom: 60px;
+    min-height: 430px;
     border-radius: 10px;
     margin-top: 5px;
     width: 300px;
@@ -1211,42 +1257,94 @@ export default {
 
   .img-textOne {
     position: absolute;
-    top: 12px;
+    top: 20px;
     font-family: "Neue Helvetica";
     left: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     box-sizing: border-box;
     font-weight: bold;
+    font-size: 20px;
   }
 
+  .img-text-icon {
+    position: absolute;
+    right: 20px;
+    width: 30px;
+    height: 40px;
+    top: 20px;
+  }
   .img-textTwo {
     position: absolute;
-    top: 33px;
+    top: 44px;
     left: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     box-sizing: border-box;
-    font-size: 12px;
+    font-size: 14px;
     font-family: "Neue Helvetica";
+    display: flex;
+    align-items: center;
+  }
+
+  .img-textTwo-icon {
+    width: 16px;
+    height: 16px;
+  }
+  .img-textThree-icon {
+    position: absolute;
+    top: 370px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .img-textFour-icon {
+    position: absolute;
+    top: 370px;
+    left: 40px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .img-textFive-icon {
+    position: absolute;
+    top: 370px;
+    left: 70px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .img-textSix-icon {
+    position: absolute;
+    top: 370px;
+    left: 250px;
+    width: 30px;
+    height: 30px;
+  }
+  .img-textSeven-icon {
+    width: 15px;
+    height: 15px;
   }
   .img-textThree {
     position: absolute;
-    bottom: 40px;
-    left: 0px;
+    top: 400px;
+    left: 5px;
     padding-left: 10px;
     padding-right: 10px;
     box-sizing: border-box;
     font-size: 12px;
     font-weight: bold;
     font-family: "Neue Helvetica";
+    display: flex;
+    align-items: center;
   }
 
   .img-textFour {
     position: absolute;
-    top: 368px;
+    top: 420px;
     left: 0px;
-    padding-left: 10px;
+    padding-left: 15px;
     padding-right: 10px;
     box-sizing: border-box;
     font-weight: bold;
@@ -1257,8 +1355,8 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
   }
 }
