@@ -151,7 +151,7 @@ export default {
         };
         break;
       case "HI0232CIR01":
-          specailStyle = {
+        specailStyle = {
           width: "155px",
           height: "130px"
         };
@@ -175,23 +175,6 @@ export default {
     cancelDialog() {
       this.visible = false;
     },
-    // customCanvas(){
-    //     let crop = this.$refs["wonCropper"].cropper;                                                      //获取crop对象
-    //     let sourceCanvas=crop.getCroppedCanvas();
-    //     let canvas = document.createElement('canvas');
-    //     let context = canvas.getContext('2d');
-    //     let width = sourceCanvas.width;
-    //     let height = sourceCanvas.height;
-    //     canvas.width = width;
-    //     canvas.height = height;
-    //     context.imageSmoothingEnabled = true;
-    //     context.drawImage(sourceCanvas, 0, 0, width, height);
-    //     context.globalCompositeOperation = 'destination-in';
-    //     context.beginPath();
-    //     context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI, true);
-    //     context.fill();
-    //     return canvas;
-    // },
     confirmDialog() {
       let crop = this.$refs["wonCropper"].cropper;
       // let judgeAspectRatio = this.$refs["wonCropper"].judgeAspectRatio;
