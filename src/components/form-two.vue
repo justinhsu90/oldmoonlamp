@@ -183,7 +183,7 @@
                 </el-col>
                 <el-col :span="12">
                   <div class="img-container">
-                    <div>预览</div>
+                    <div>Preview</div>
                     <div class="img-content">
                       <div
                         class="img-background"
@@ -193,13 +193,13 @@
                       ></div>
                       <span class="img-textOne">{{ form.personalizedWord }}</span>
                       <img
-                        src="@/assets/img/try.png"
+                        src="@/assets/img/6.png"
                         alt=""
                         class="img-text-icon"
                       >
                       <div class="img-textTwo">
                         <img
-                          src="@/assets/img/try.png"
+                          src="@/assets/img/1.png"
                           alt=""
                           class="img-textTwo-icon"
                         >
@@ -210,28 +210,28 @@
                         </span>
                       </div>
                       <img
-                        src="@/assets/img/try.png"
+                        src="@/assets/img/2.png"
                         alt=""
                         class="img-textThree-icon"
                       >
                       <img
-                        src="@/assets/img/try.png"
+                        src="@/assets/img/4.png"
                         alt=""
                         class="img-textFour-icon"
                       >
                       <img
-                        src="@/assets/img/try.png"
+                        src="@/assets/img/5.png"
                         alt=""
                         class="img-textFive-icon"
                       >
                       <img
-                        src="@/assets/img/try.png"
+                        src="@/assets/img/7.png"
                         alt=""
                         class="img-textSix-icon"
                       >
                       <div class="img-textThree">
                         <img
-                          src="@/assets/img/try.png"
+                          src="@/assets/img/3.png"
                           alt=""
                           class="img-textSeven-icon"
                         >
