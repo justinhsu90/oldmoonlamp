@@ -245,9 +245,10 @@
                         }}
                         </span>
                       </div>
-                      <span class="img-textFour">{{
-                        form.personalizedWordTest4
-                      }}</span>
+                      <span
+                        class="img-textFour"
+                        v-html="form.personalizedWordTest4.replace(/\n/g,'<br/>')"
+                      ></span>
                     </div>
                   </div>
                 </el-col>
@@ -1280,7 +1281,7 @@ export default {
   }
   .img-textTwo {
     position: absolute;
-    top: 46px;
+    top: 50px;
     left: 0px;
     padding-left: 15px;
     padding-right: 15px;
