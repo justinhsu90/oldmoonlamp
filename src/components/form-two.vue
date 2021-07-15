@@ -861,7 +861,7 @@ export default {
           if (this.form.personalizedWordTest4) {
             obj["forth"] = this.form.personalizedWordTest4;
           }
-          debugger
+
           formData.append("personalizedWord", JSON.stringify(obj));
 
           if (this.form.color) {
